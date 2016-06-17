@@ -2976,8 +2976,10 @@ randomnumber = Math.floor(Math.random()*100)
 var rainbotarray = {}
 var rainbotlen = 0
 function rainbot(rainbotname, rainbotwager){
+console.log("Rainbot function started");
 rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
+console.log("if completed");
 rainbotarray.push(rainbotname+"."+rainbotwager);
 console.log("Attempted to log bet", rainbotarray[1]);
 }
