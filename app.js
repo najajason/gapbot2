@@ -2981,7 +2981,7 @@ console.log("Rainbot function started ", rainbotlen);
 if (rainbotlen == 0){
 console.log("if completed");
 rainbotarray.push(rainbotname+"."+rainbotwager);
-console.log("Attempted to log bet", rainbotarray[1]);
+console.log("Attempted to log bet", rainbotarray[0]);
 }
 }
 
