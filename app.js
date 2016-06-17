@@ -3009,7 +3009,7 @@ for (rainbotlop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
-winningnumber = math.Random();
+winningnumber = Math.random();
 for (rainbotlop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totalusedtickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totalusedtickets
 if (totalusedtickets > winningnumber*totaltickets){
