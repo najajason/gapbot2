@@ -2977,20 +2977,23 @@ var rainbotarray = []
 var rainbotlen = 0
 var rainbotloop = 0
 var newrainbotpoints
+var rainbotdone = 0
 function rainbot(rainbotname, rainbotwager){
+rainbotdone = 0;
 rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
 rainbotarray.push(rainbotname+"."+rainbotwager);
 } else{
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
 if (rainbotname == rainbotarray[rainbotloop].split(".")[0]){
+rainbotdone = 1;
 console.log('Old array thingy', rainbotarray[rainbotloop]);
 newrainbotpoints = rainbotwager+parseInt(rainbotarray[rainbotloop].split(".")[1]);
 rainbotarray[rainbotloop] = rainbotarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
 console.log('New array thingy', rainbotarray[rainbotloop]);
 }
 }
-if (rainbotloop == rainbotlen){
+if (rainbotloop == rainbotlen && rainbotdone == 0){
 rainbotarray.push(rainbotname+"."+rainbotwager);
 }
 }
