@@ -2978,6 +2978,8 @@ var rainbotlen = 0
 var rainbotloop = 0
 var newrainbotpoints
 var rainbotdone = 0
+var totaltickets = 0
+var totalusedtickets = 0
 function rainbot(rainbotname, rainbotwager){
 rainbotdone = 0;
 rainbotlen = rainbotarray.length;
@@ -2995,6 +2997,21 @@ console.log('New array thingy', rainbotarray[rainbotloop]);
 }
 if (rainbotloop == rainbotlen && rainbotdone == 0){
 rainbotarray.push(rainbotname+"."+rainbotwager);
+}
+}
+}
+
+function rainbotpayout(){
+for (rainbotlop = 0; rainbotloop < rainbotlen; rainbotloop++){
+totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
+console.log('Total Tickets: ', totaltickets);
+}
+winningnumber = math.Random();
+for (rainbotlop = 0; rainbotloop < rainbotlen; rainbotloop++){
+totalusedtickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totalusedtickets
+if (totalusedtickets > winningnumber*totaltickets){
+console.log('WINNER: ', rainbotarray[rainbotloop].split(".")[0]);
+rainbotloop = 99999999999999;
 }
 }
 }
