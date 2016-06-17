@@ -412,7 +412,7 @@ if (helpers.getHashParams().access_token) {
 
 // Scrub fragment params from url.
 if (window.history && window.history.replaceState) {
-  window.history.replaceState({}, window.location.href, "http://www.bustapot.pw/gapbot");
+  window.history.replaceState({}, window.location.href, "http://www.bustapot.pw/gapbot2");
 } else {
   // For browsers that don't support html5 history api, just do it the old
   // fashioned way that leaves a trailing '#' in the url
