@@ -2973,7 +2973,7 @@ randomnumber = Math.floor(Math.random()*100)
             });
     });
 }
-var rainbotarray = {"gapjustin.1"}
+var rainbotarray = []
 var rainbotlen = 0
 function rainbot(rainbotname, rainbotwager){
 rainbotlen = rainbotarray.length;
