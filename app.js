@@ -638,6 +638,7 @@ var worldStore = new Store('world', {
 
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
+	rainbot(bet.uname, bet.wager);
     self.emitter.emit('change', self.state);
   });
 
@@ -2972,6 +2973,16 @@ randomnumber = Math.floor(Math.random()*100)
             });
     });
 }
+var rainbotarray = {}
+var rainbotlen
+function rainbot(rainbotname, rainbotwager){
+rainbotlen = rainbotarray.length;
+if (rainbotlen == 0){
+rainbotarray.push(rainbotname+"."+rainbotwager);
+console.log("Attempted to log bet", rainbotarray[1]);
+}
+}
+
 
 // This function is passed to the recaptcha.js script and called when
 // the script loads and exposes the window.grecaptcha object. We pass it
