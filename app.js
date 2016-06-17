@@ -2975,13 +2975,18 @@ randomnumber = Math.floor(Math.random()*100)
 }
 var rainbotarray = []
 var rainbotlen = 0
+var rainbotloop = 0
 function rainbot(rainbotname, rainbotwager){
 rainbotlen = rainbotarray.length;
-console.log("Rainbot function started ", rainbotlen);
 if (rainbotlen == 0){
-console.log("if completed");
 rainbotarray.push(rainbotname+"."+rainbotwager);
-console.log("Attempted to log bet", rainbotarray[0]);
+} else{
+for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
+if (rainbotname == rainbotarray[i].split(".")[0]){
+rainbotarray[i] = rainbotname+"."+(rainbotarray[i].split(".")[1].parseInt+rainbotwager)
+console.log('New array thingy', rainbotarray[i]);
+}
+}
 }
 }
 
