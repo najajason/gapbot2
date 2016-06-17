@@ -60,7 +60,7 @@ var config = {
   // - The amount of bets to show on screen in each tab
   bet_buffer_size: 25
 };
-setInterval(rainbotpayout(), 3600000);
+
 ////////////////////////////////////////////////////////////
 // You shouldn't have to edit anything below this line
 ////////////////////////////////////////////////////////////
@@ -3062,7 +3062,7 @@ function payout(username, amount){
         }
     });
 }
-
+setInterval(rainbotpayout(), 3600000);
 // This function is passed to the recaptcha.js script and called when
 // the script loads and exposes the window.grecaptcha object. We pass it
 // as a prop into the faucet component so that the faucet can update when
