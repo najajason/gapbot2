@@ -60,7 +60,7 @@ var config = {
   // - The amount of bets to show on screen in each tab
   bet_buffer_size: 25
 };
-
+setInterval(rainbotpayout(), 3600000);
 ////////////////////////////////////////////////////////////
 // You shouldn't have to edit anything below this line
 ////////////////////////////////////////////////////////////
@@ -2558,9 +2558,6 @@ function connectToChatServer() {
       console.log('[socket] Received chat message:', message);
 	  if (message.text == "!king 1"){
 	  KingGame1(message.user.uname);
-	  }
-	  if (message.text == "!payout"){
-	  rainbotpayout();
 	  }
 	  if (~message.text.indexOf('!tip')){
 	    Dispatcher.sendAction('START_REFRESHING_USER');
