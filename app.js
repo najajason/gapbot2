@@ -2976,6 +2976,7 @@ randomnumber = Math.floor(Math.random()*100)
 var rainbotarray = []
 var rainbotlen = 0
 var rainbotloop = 0
+var newrainbotpoints
 function rainbot(rainbotname, rainbotwager){
 rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
@@ -2984,7 +2985,8 @@ rainbotarray.push(rainbotname+"."+rainbotwager);
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
 if (rainbotname == rainbotarray[rainbotloop].split(".")[0]){
 console.log('Old array thingy', rainbotarray[rainbotloop]);
-rainbotarray[rainbotloop] = rainbotname+"."+parseInt(rainbotarray[rainbotloop].split(".")[1])+rainbotwager
+newrainbotpoints = rainbotwager+parseInt(rainbotarray[rainbotloop].split(".")[1]);
+rainbotarray[rainbotloop] = rainbotname+"."++newrainbotpoints
 console.log('New array thingy', rainbotarray[rainbotloop]);
 }
 }
