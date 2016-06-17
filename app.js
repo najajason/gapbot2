@@ -2984,7 +2984,7 @@ rainbotarray.push(rainbotname+"."+rainbotwager);
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
 if (rainbotname == rainbotarray[rainbotloop].split(".")[0]){
 console.log('Old array thingy', rainbotarray[rainbotloop]);
-rainbotarray[rainbotloop] = rainbotname+"."+rainbotarray[rainbotloop].split(".")[1].parseInt+rainbotwager
+rainbotarray[rainbotloop] = rainbotname+"."+parseInt(rainbotarray[rainbotloop].split(".")[1])+rainbotwager
 console.log('New array thingy', rainbotarray[rainbotloop]);
 }
 }
