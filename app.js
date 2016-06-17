@@ -2982,9 +2982,9 @@ if (rainbotlen == 0){
 rainbotarray.push(rainbotname+"."+rainbotwager);
 } else{
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
-if (rainbotname == rainbotarray[i].split(".")[0]){
-rainbotarray[i] = rainbotname+"."+(rainbotarray[i].split(".")[1].parseInt+rainbotwager)
-console.log('New array thingy', rainbotarray[i]);
+if (rainbotname == rainbotarray[rainbotloop].split(".")[0]){
+rainbotarray[rainbotloop] = rainbotname+"."+(rainbotarray[rainbotloop].split(".")[1].parseInt+rainbotwager)
+console.log('New array thingy', rainbotarray[rainbotloop]);
 }
 }
 }
