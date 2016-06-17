@@ -2988,6 +2988,8 @@ console.log('Old array thingy', rainbotarray[rainbotloop]);
 newrainbotpoints = rainbotwager+parseInt(rainbotarray[rainbotloop].split(".")[1]);
 rainbotarray[rainbotloop] = rainbotname+"."+newrainbotpoints
 console.log('New array thingy', rainbotarray[rainbotloop]);
+} else if (rainbotloop == rainbotlen){
+rainbotarray.push(rainbotname+"."+rainbotwager);
 }
 }
 }
