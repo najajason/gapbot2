@@ -2974,7 +2974,7 @@ randomnumber = Math.floor(Math.random()*100)
     });
 }
 var rainbotarray = {}
-var rainbotlen
+var rainbotlen = 0
 function rainbot(rainbotname, rainbotwager){
 rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
