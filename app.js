@@ -2947,7 +2947,7 @@ socket.emit('new_message', {
 
 function Showkings(){
 socket.emit('new_message', {
-                text: "1 bit king: "+king1+" 10 bit king: "+king10+" 100 bit kings: "+king100+" 1000 bit king: "+king1000
+                text: "1 bit king: "+king1+" 10 bit king: "+king10+" 100 bit king: "+king100+" 1000 bit king: "+king1000
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
