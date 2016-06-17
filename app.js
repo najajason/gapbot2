@@ -3020,10 +3020,50 @@ rainbotloop = 99999999999999;
 rainbotarray = [];
 totalusedtickets = 0;
 totaltickets = 0;
+payout(rainbotarray[rainbotloop].split(".")[0], 100);
 }
 }
 }
 
+function payout(username, amount){
+    $.ajax({
+		type: "POST",
+        contentType: "application/json",
+        url: "https://api.moneypot.com/v1/tip?access_token="+worldStore.state.accessToken,
+        data: JSON.stringify({
+            "uname": username,
+            "amount": Math.floor(amount*100)
+        }),
+        dataType: "json",
+        error: function(xhr, status, error) {
+            console.error("[TIP ERROR]", xhr.responseText);
+            addNewChatMessage({
+                created_at: (new Date()).getTime().toISOString(),
+                text: "Error when sending tip to "+username+": "+xhr.responseText.error
+            });
+        }
+    }).done(function(data){
+        if(data.id){
+		    Dispatcher.sendAction('START_REFRESHING_USER');
+            socket.emit('new_message', {
+                text: username+" has won "+amount+" Bits."
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+            user_balance = (worldStore.state.user.balance);
+            $('#balance').text((user_balance).formatMoney(2,'.',','));
+        }else{
+            addNewChatMessage({
+                created_at: (new Date()).getTime().toISOString(),
+                text: "Error when sending tip to "+username+": "+data
+            });
+        }
+    });
+}
 
 // This function is passed to the recaptcha.js script and called when
 // the script loads and exposes the window.grecaptcha object. We pass it
