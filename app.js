@@ -2982,15 +2982,16 @@ rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
 rainbotarray.push(rainbotname+"."+rainbotwager);
 } else{
-for (rainbotloop = 0; rainbotloop <= rainbotlen; rainbotloop++) {
+for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
 if (rainbotname == rainbotarray[rainbotloop].split(".")[0]){
 console.log('Old array thingy', rainbotarray[rainbotloop]);
 newrainbotpoints = rainbotwager+parseInt(rainbotarray[rainbotloop].split(".")[1]);
 rainbotarray[rainbotloop] = rainbotname+"."+newrainbotpoints
 console.log('New array thingy', rainbotarray[rainbotloop]);
-} else if (rainbotloop == rainbotlen){
-rainbotarray.push(rainbotname+"."+rainbotwager);
 }
+}
+if (rainbotloop == rainbotlen){
+rainbotarray.push(rainbotname+"."+rainbotwager);
 }
 }
 }
