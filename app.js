@@ -3005,6 +3005,7 @@ rainbotarray.push(rainbotname+"."+rainbotwager);
 }
 
 function rainbotpayout(){
+console.log('entered payout');
 for (rainbotlop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
