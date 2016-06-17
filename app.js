@@ -3017,6 +3017,7 @@ totalusedtickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totalusedti
 if (totalusedtickets > winningnumber*totaltickets){
 console.log('WINNER: ', rainbotarray[rainbotloop].split(".")[0]);
 rainbotloop = 99999999999999;
+rainbotarray = [];
 }
 }
 }
