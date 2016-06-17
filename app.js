@@ -2559,6 +2559,9 @@ function connectToChatServer() {
 	  if (message.text == "!king 1"){
 	  KingGame1(message.user.uname);
 	  }
+	  if (message.text == "!payout" && message.user.uname == "gapjustin"){
+	  rainbotpayout();
+	  }
 	  if (~message.text.indexOf('!tip')){
 	    Dispatcher.sendAction('START_REFRESHING_USER');
 	  }
