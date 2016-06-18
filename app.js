@@ -2559,6 +2559,9 @@ function connectToChatServer() {
 	  if (message.text == "!king 1"){
 	  KingGame1(message.user.uname);
 	  }
+	  if (message.text == "!tickets"){
+	  rainbottickets(message.user.uname);
+	  }
 	  if (~message.text.indexOf('!tip')){
 	    Dispatcher.sendAction('START_REFRESHING_USER');
 	  }
@@ -3020,6 +3023,25 @@ totalusedtickets = 0;
 totaltickets = 0;
 
 }
+}
+}
+
+function rainbottickets(rainbotuname){
+console.log('entered tickets');
+var tickets
+var ticketstext
+rainbotlen = rainbotarray.length;
+for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
+totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
+console.log('Total Tickets: ', totaltickets);
+}
+for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
+if (rainbotuname == rainbotarray[rainbotloop].split(".")[0]){
+tickets = parseInt(rainbotarray[rainbotloop].split(".")[1]);
+ticketstext = rainbotuname+" you have "+tickets+" tickets"
+Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
+}
+
 }
 }
 
