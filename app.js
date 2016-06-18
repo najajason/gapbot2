@@ -3062,7 +3062,7 @@ function payout(username, amount){
         }
     });
 }
-setInterval(rainbotpayout(), 3600000);
+setInterval(function(){ rainbotpayout() }, 5000);
 // This function is passed to the recaptcha.js script and called when
 // the script loads and exposes the window.grecaptcha object. We pass it
 // as a prop into the faucet component so that the faucet can update when
