@@ -3031,6 +3031,7 @@ console.log('entered tickets');
 var tickets
 var ticketstext
 rainbotlen = rainbotarray.length;
+totaltickets = 0;
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
