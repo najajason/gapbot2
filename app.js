@@ -3039,7 +3039,7 @@ console.log('Total Tickets: ', totaltickets);
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 if (rainbotuname == rainbotarray[rainbotloop].split(".")[0]){
 tickets = parseInt(rainbotarray[rainbotloop].split(".")[1]);
-ticketstext = rainbotuname+" you have "+tickets+"/"+totaltickets+" tickets"
+ticketstext = rainbotuname+" you have "+Math.round(tickets/1000)+"/"+Math.round(totaltickets/1000)+" tickets"
 Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 
