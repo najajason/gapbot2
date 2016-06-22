@@ -753,7 +753,7 @@ var UserBox = React.createClass({
         {className: 'navbar-text'},
         'Loading...'
       );
-    } else if (worldStore.state.user) {
+    } else if (1==1) {
       innerNode = el.div(
         null,
         // Deposit/Withdraw popup buttons
