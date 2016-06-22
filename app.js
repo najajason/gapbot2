@@ -748,7 +748,7 @@ var UserBox = React.createClass({
   render: function() {
 
     var innerNode;
-    if (worldStore.state.isLoading) {
+    if (1==2) {
       innerNode = el.p(
         {className: 'navbar-text'},
         'Loading...'
