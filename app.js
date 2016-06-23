@@ -3108,6 +3108,7 @@ if (amount == ponzineed){
 ponzineed = ponzineed*2;
 tipUser(ponziowner, amount*0.95);
 ponziowner = username;
+fix(amount*5)
 
 socket.emit('new_message', {
                 text: ""+username+" is now the new owner, buy him out for: "+ponzineed+"bits and become the new owner!"
