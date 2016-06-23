@@ -2561,6 +2561,9 @@ function connectToChatServer() {
 	  if (message.text == "!king 1"){
 	  KingGame1(message.user.uname);
 	  }
+	  if (message.text == "!rip"){
+	  ponzirip(message.user.uname);
+	  }
 	  if(message.text.split(" ")[0] == "!ponzi" && message.text.split(" ").length == 2){
 	  ponzigame(message.user.uname, message.text.split(" ")[1]);
 	  }
@@ -3078,6 +3081,21 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 }
+function ponzirip(username){
+if (username == "gapjustin"){
+socket.emit('new_message', {
+                text: ""+ponziowner+" Has lost their: "+ponzineed+" bits ownership!"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+ponzineed = 1;
+ponziowner = "gapjustin";
+}
+}
 function ponzigame(username, amount){
 savebalanceponzi = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
@@ -3088,7 +3106,7 @@ function ponzifunc(username, amount){
 if (worldStore.state.user.balance >= savebalanceponzi+(amount*100)){
 if (amount == ponzineed){
 ponzineed = ponzineed*2;
-tipUser(ponziowner, amount);
+tipUser(ponziowner, amount*0.95);
 ponziowner = username;
 
 socket.emit('new_message', {
