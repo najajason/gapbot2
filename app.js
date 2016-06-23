@@ -3069,7 +3069,7 @@ socket.emit('new_message', {
 function ponzigame(username, amount){
 savebalanceponzi = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
-myVar = setTimeout(function(){ ponzifunc(amount, user); }, 2000);
+myVar = setTimeout(function(){ ponzifunc(username, amount); }, 2000);
 }
 
 function ponzifunc(username, amount){
