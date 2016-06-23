@@ -2564,6 +2564,9 @@ function connectToChatServer() {
 	  if (message.text == "!rip"){
 	  ponzirip(message.user.uname);
 	  }
+	  if (message.text == "!help ponzi"){
+	  ponzihelp();
+	  }
 	  if(message.text.split(" ")[0] == "!ponzi" && message.text.split(" ").length == 2){
 	  ponzigame(message.user.uname, message.text.split(" ")[1]);
 	  }
