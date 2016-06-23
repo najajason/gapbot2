@@ -3075,7 +3075,7 @@ socket.emit('new_message', {
 
 function ponzihelp(){
 socket.emit('new_message', {
-                text: "Ponzi is a game where you 'buy' the ponzi spot from someone and wait till someone buys your ponzi spot for twice your payin. Commands: !ponzi -- check who the owner is, !ponzi (amount), try to buy the ponzi spot"
+                text: "Ponzi is a game where you 'buy' the ponzi spot from someone and wait till someone buys your ponzi spot for 1.90 times your buyin. Commands: !ponzi -- check who the owner is, !ponzi (amount), try to buy the ponzi spot"
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
