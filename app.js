@@ -3057,7 +3057,7 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 
 function showponzi(){
 socket.emit('new_message', {
-                text: ""+username+" is the current owner, buy him out for: "+ponzineed+" bits and become the new owner!!"
+                text: ""+ponziowner+" is the current owner, buy him out for: "+ponzineed+" bits and become the new owner!!"
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
