@@ -3073,7 +3073,7 @@ myVar = setTimeout(function(){ ponzifunc(username, amount); }, 2000);
 }
 
 function ponzifunc(username, amount){
-if (worldStore.state.user.balance >= savebalanceponzi+amount){
+if (worldStore.state.user.balance >= savebalanceponzi+(amount*100)){
 if (amount == ponzineed){
 ponzineed = ponzineed*2;
 tipUser(ponziowner, amount);
