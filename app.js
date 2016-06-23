@@ -3100,7 +3100,7 @@ socket.emit('new_message', {
             });
 tipUser(username, amount);
 }
-} else if (worldStore.state.user.balance < savebalanceponzi+amount){
+} else {
 socket.emit('new_message', {
                 text: "No scamming allowed, you don't have enough balance for this, "+username+"!"
             }, function(err, msg){
