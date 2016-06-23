@@ -34,7 +34,9 @@ var king1profit = 0
 var king10profit = 0
 var king100profit = 0
 var king1000profit = 0
-
+var savebalanceponzi = 0
+var ponzineed = 1
+var ponziowner = "gapjustin"
 
 var config = {
   // - Your app's id on moneypot.com
@@ -2559,6 +2561,12 @@ function connectToChatServer() {
 	  if (message.text == "!king 1"){
 	  KingGame1(message.user.uname);
 	  }
+	  if(message.text.split(" ")[0] == "!ponzi" && message.text.split(" ").length == 2){
+	  ponzigame(message.user.uname, message.text.split(" ")[1]);
+	  }
+	  if(message.text == "!ponzi"){
+	  showponzi();
+	  }
 	  if (message.text == "!tickets"){
 	  rainbottickets(message.user.uname);
 	  }
@@ -3044,6 +3052,65 @@ ticketstext = rainbotuname+" you have "+Math.round(tickets/1000)+"/"+Math.round(
 Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 
+}
+}
+
+function showponzi(){
+socket.emit('new_message', {
+                text: ""+username+" is the current owner, buy him out for: "+ponzineed+" bits and become the new owner!!"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+}
+function ponzigame(username, amount){
+savebalanceponzi = worldStore.state.user.balance
+    Dispatcher.sendAction('START_REFRESHING_USER');
+myVar = setTimeout(function(){ ponzifunc(amount, user); }, 2000);
+}
+
+function ponzifunc(username, amount){
+if (amount == ponzineed && worldStore.state.user.balance >= savebalanceponzi+amount){
+ponzineed = ponzineed*2;
+tipUser(ponziowner, amount);
+ponziowner = username;
+
+socket.emit('new_message', {
+                text: ""+username+" is now the new owner, buy him out for: "+ponzineed+"bits and become the new owner!!"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+
+} else if (worldStore.state.user.balance > savebalanceponzi+amount){
+socket.emit('new_message', {
+                text: "No scamming allowed, you don't have enough balance for this, "+username+"!"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+}
+
+} else if (amount != ponzineed){
+socket.emit('new_message', {
+                text: "Wrong amount entered @"+username+", returning your bits now!"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+tipUser(username, amount);
 }
 }
 
