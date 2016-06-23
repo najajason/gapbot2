@@ -3100,7 +3100,7 @@ socket.emit('new_message', {
             });
 }
 
-} else if (amount != ponzineed){
+} else if (amount !== ponzineed){
 socket.emit('new_message', {
                 text: "Wrong amount entered @"+username+", returning your bits now!"
             }, function(err, msg){
