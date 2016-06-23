@@ -3057,7 +3057,19 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 
 function showponzi(){
 socket.emit('new_message', {
-                text: ""+ponziowner+" is the current owner, buy him out for: "+ponzineed+" bits and become the new owner!!"
+                text: ""+ponziowner+" is the current owner, buy him out for: "+ponzineed+" bits and become the new owner!"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+}
+
+function ponzihelp(){
+socket.emit('new_message', {
+                text: "Ponzi is a game where you 'buy' the ponzi spot from someone and wait till someone buys your ponzi spot for twice your payin. Commands: !ponzi -- check who the owner is, !ponzi (amount), try to buy the ponzi spot"
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
@@ -3080,7 +3092,7 @@ tipUser(ponziowner, amount);
 ponziowner = username;
 
 socket.emit('new_message', {
-                text: ""+username+" is now the new owner, buy him out for: "+ponzineed+"bits and become the new owner!!"
+                text: ""+username+" is now the new owner, buy him out for: "+ponzineed+"bits and become the new owner!"
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
