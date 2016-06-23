@@ -3098,8 +3098,6 @@ socket.emit('new_message', {
                 }
                 console.log('Successfully submitted message:', msg);
             });
-}
-
 } else if (amount !== ponzineed){
 socket.emit('new_message', {
                 text: "Wrong amount entered @"+username+", returning your bits now! Amount needed: "+ponzineed
