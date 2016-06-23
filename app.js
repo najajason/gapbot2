@@ -3088,7 +3088,7 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 
-} else if (worldStore.state.user.balance > savebalanceponzi+amount){
+} else if (worldStore.state.user.balance < savebalanceponzi+amount){
 socket.emit('new_message', {
                 text: "No scamming allowed, you don't have enough balance for this, "+username+"!"
             }, function(err, msg){
