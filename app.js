@@ -2573,9 +2573,9 @@ function connectToChatServer() {
 	  if(message.text == "!ponzi"){
 	  showponzi();
 	  }
-	  if (message.text == "!tickets"){
+	  /*if (message.text == "!tickets"){
 	  rainbottickets(message.user.uname);
-	  }
+	  }*/
 	  if (~message.text.indexOf('!tip')){
 	    Dispatcher.sendAction('START_REFRESHING_USER');
 	  }
@@ -3186,7 +3186,7 @@ function payout(username, amount){
         }
     });
 }
-setInterval(function(){ rainbotpayout() }, 3600000);
+// setInterval(function(){ rainbotpayout() }, 3600000); // Rainbot loop
 // This function is passed to the recaptcha.js script and called when
 // the script loads and exposes the window.grecaptcha object. We pass it
 // as a prop into the faucet component so that the faucet can update when
