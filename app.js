@@ -3098,7 +3098,7 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
 }
 
 }
-}
+
 
 
 function showponzi(){
