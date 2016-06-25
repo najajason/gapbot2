@@ -3071,7 +3071,7 @@ function rainbotticketsb(rainbotuname){
 if (rainbotuname == "gapjustin"){
 console.log('entered tickets');
 var tickets
-var ticketstextb
+var ticketstextb = ""
 rainbotlen = rainbotarray.length;
 
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
@@ -3093,7 +3093,7 @@ totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
-ticketstexta = Math.round(totaltickets/4000)+"out of 100.000 points!"
+ticketstexta = Math.round(totaltickets/4000)+" points out of 100000 points!"
 Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
 }
 
