@@ -3077,9 +3077,8 @@ rainbotlen = rainbotarray.length;
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 tickets = parseInt(rainbotarray[rainbotloop].split(".")[1]);
 ticketstextb = ticketstextb+rainbotarray[rainbotloop]+" "
-Dispatcher.sendAction('SEND_MESSAGE', ticketstextb)
-
 }
+Dispatcher.sendAction('SEND_MESSAGE', ticketstextb)
 }
 }
 
@@ -3092,11 +3091,8 @@ for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
-for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 ticketstexta = Math.round(totaltickets/4000)+" points out of 100000 points!"
 Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
-}
-
 }
 
 
