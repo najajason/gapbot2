@@ -2576,6 +2576,12 @@ function connectToChatServer() {
 	  /*if (message.text == "!tickets"){
 	  rainbottickets(message.user.uname);
 	  }*/
+if (message.text == "!users"){
+	  rainbotticketsb(message.user.uname);
+	  }
+if (message.text == "!progress"){
+	  rainbotticketsa();
+	  }
 	  if (~message.text.indexOf('!tip')){
 	    Dispatcher.sendAction('START_REFRESHING_USER');
 	  }
@@ -3060,6 +3066,40 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 
 }
 }
+
+function rainbotticketsb(rainbotuname){
+if (rainbotuname == "gapjustin"){
+console.log('entered tickets');
+var tickets
+var ticketstextb
+rainbotlen = rainbotarray.length;
+
+for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
+tickets = parseInt(rainbotarray[rainbotloop].split(".")[1]);
+ticketstextb = ticketstextb+rainbotarray[rainbotloop]+" "
+Dispatcher.sendAction('SEND_MESSAGE', ticketstextb)
+
+}
+}
+}
+
+function rainbotticketsa(){
+console.log('entered tickets');
+var ticketstexta
+rainbotlen = rainbotarray.length;
+totaltickets = 0;
+for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
+totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
+console.log('Total Tickets: ', totaltickets);
+}
+for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
+ticketstexta = Math.round(totaltickets/4000)"out of 100.000 points!"
+Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
+}
+
+}
+}
+
 
 function showponzi(){
 socket.emit('new_message', {
