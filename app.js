@@ -3152,7 +3152,7 @@ rainbotdone = 0;
 totalmoney = 0;
 referalleng = referalarray.length;
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
-if (referer == referalarray(rainbotloop.split(".")[0]){
+if (referer == referalarray[rainbotloop].split(".")[0]){
 payoutreferal(referalarray[rainbotloop.split(".")[1], referer);
 }
 }
