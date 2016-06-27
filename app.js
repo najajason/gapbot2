@@ -3129,7 +3129,7 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
 var referalmoneyarray = []
-var referalmoneyleng, referalpayoutleng, totalmoney
+var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
 rainbotdone = 0;
 referalmoneyleng = referalmoneyarray.length;
@@ -3150,6 +3150,7 @@ referalmoneyarray.push(referalname+"."+rainbotwager);
 }
 }
 }
+
 function payoutreferals(referer){
 console.log('Entered payoutreferals');
 rainbotdone = 0;
@@ -3166,9 +3167,11 @@ function payoutreferal(refered, referer){
 console.log('Entered payoutreferal');
 referalpayoutleng = referalmoneyarray.length;
 for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
-if (refered == parseInt(referalmoneyarray.split(".")[0])/16000){
-SilentTip(referer, referalmoneyarray.split(".")[1]);
-totalmoney = pasreInt(referalmoneyarray.split(".")[1])/16000;
+if (refered == parseInt(referalmoneyarray.split(".")[0])){
+console.log('passed if statement');
+refmoney = pasreInt(referalmoneyarray.split(".")[1])/16000
+SilentTip(referer, refmoney);
+totalmoney = totalmoney+refmoney;
 }
 }
 }
