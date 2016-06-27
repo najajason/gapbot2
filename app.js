@@ -3170,7 +3170,7 @@ referalpayoutleng = referalmoneyarray.length;
 for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
 if (refered == referalmoneyarray[rainbotloop].split(".")[0]){
 console.log('passed if statement');
-refmoney = pasreInt(referalmoneyarray[rainbotloop].split(".")[1])/16000
+refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/16000
 SilentTip(referer, refmoney);
 totalmoney = totalmoney+refmoney;
 }
