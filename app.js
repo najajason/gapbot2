@@ -3168,9 +3168,9 @@ function payoutreferal(refered, referer){
 console.log('Entered payoutreferal'+referer+refered);
 referalpayoutleng = referalmoneyarray.length;
 for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
-if (refered == parseInt(referalmoneyarray.split(".")[0])){
+if (refered == parseInt(referalmoneyarray[rainbotloop].split(".")[0])){
 console.log('passed if statement');
-refmoney = pasreInt(referalmoneyarray.split(".")[1])/16000
+refmoney = pasreInt(referalmoneyarray[rainbotloop].split(".")[1])/16000
 SilentTip(referer, refmoney);
 totalmoney = totalmoney+refmoney;
 }
