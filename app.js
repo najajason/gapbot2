@@ -3080,9 +3080,11 @@ alreadyrefered = 0;
 referalleng = referalarray.length;
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
 if (referal == referalarray[rainbotloop].split(".")[1]){
+console.log('Already refered');
 alreadyrefered = 1;
 }
 if (alreadyrefered == 0){
+console.log('Put in referal array');
 referalarray.push(referer+"."+referal);
 }
 }
