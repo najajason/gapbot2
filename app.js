@@ -3176,6 +3176,15 @@ totalmoney = totalmoney+refmoney;
 referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+".0"
 }
 }
+socket.emit('new_message', {
+                text: "Paid: "+refered+" "+totalmoney+" Bits"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
 }
 
 function rainbotticketsb(rainbotuname){
