@@ -3163,19 +3163,25 @@ payoutreferal(referalarray[rainbotloop].split(".")[1], referer);
 }
 }
 }
-
+var failed
 function payoutreferal(refered, referer){
 console.log('Entered payoutreferal '+referer+refered);
 referalpayoutleng = referalmoneyarray.length;
+failed = 0;
 for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
 if (refered == referalmoneyarray[rainbotloop].split(".")[0]){
 console.log('passed if statement');
 refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/160000
+if (refmoney < worldStore.state.user.balance){
 SilentTip(referer, refmoney);
 totalmoney = totalmoney+refmoney;
 referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+".0"
+} else {
+failed = 1;
 }
 }
+}
+if (failed = 0){
 socket.emit('new_message', {
                 text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits"
             }, function(err, msg){
@@ -3185,6 +3191,17 @@ socket.emit('new_message', {
                 }
                 console.log('Successfully submitted message:', msg);
             });
+} else {
+socket.emit('new_message', {
+                text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits. not all bits could be paid, try again later!"
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+}
 }
 
 function rainbotticketsb(rainbotuname){
