@@ -3160,7 +3160,8 @@ referalleng = referalarray.length;
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
 if (referer == referalarray[rainbotloop].split(".")[0]){
 Dispatcher.sendAction('START_REFRESHING_USER');
-myVar = setTimeout(function(){ payoutreferal(referalarray[rainbotloop].split(".")[1], referer); }, 2000);
+
+payoutreferal(referalarray[rainbotloop].split(".")[1], referer);
 }
 }
 }
