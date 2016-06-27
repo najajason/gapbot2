@@ -3181,7 +3181,7 @@ failed = 1;
 }
 }
 }
-if (failed = 0){
+if (failed == 0){
 socket.emit('new_message', {
                 text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits"
             }, function(err, msg){
