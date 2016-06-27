@@ -3173,7 +3173,7 @@ if (refered == referalmoneyarray[rainbotloop].split(".")[0]){
 console.log('passed if statement');
 refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/160000
 if (refmoney < worldStore.state.user.balance){
-SilentTip(referer, refmoney);
+SilentTip(referer, refmoney.toFixed(2));
 totalmoney = totalmoney+refmoney;
 referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+".0"
 } else {
