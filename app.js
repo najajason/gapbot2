@@ -3159,7 +3159,8 @@ totalmoney = 0;
 referalleng = referalarray.length;
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
 if (referer == referalarray[rainbotloop].split(".")[0]){
-payoutreferal(referalarray[rainbotloop].split(".")[1], referer);
+Dispatcher.sendAction('START_REFRESHING_USER');
+myVar = setTimeout(function(){ payoutreferal(referalarray[rainbotloop].split(".")[1], referer); }, 2000);
 }
 }
 }
