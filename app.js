@@ -3177,7 +3177,7 @@ referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+".
 }
 }
 socket.emit('new_message', {
-                text: "Paid: "+referer+" "+totalmoney+" Bits"
+                text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits"
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
