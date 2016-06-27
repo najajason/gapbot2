@@ -3151,6 +3151,7 @@ referalmoneyarray.push(referalname+"."+rainbotwager);
 }
 }
 function payoutreferals(referer){
+console.log('Entered payoutreferals');
 rainbotdone = 0;
 totalmoney = 0;
 referalleng = referalarray.length;
@@ -3162,6 +3163,7 @@ payoutreferal(referalarray[rainbotloop].split(".")[1], referer);
 }
 
 function payoutreferal(refered, referer){
+console.log('Entered payoutreferal');
 referalpayoutleng = referalmoneyarray.length;
 for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
 if (refered == parseInt(referalmoneyarray.split(".")[0])/16000){
