@@ -3173,6 +3173,7 @@ console.log('passed if statement');
 refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/16000
 SilentTip(referer, refmoney);
 totalmoney = totalmoney+refmoney;
+referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+".0"
 }
 }
 }
