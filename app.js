@@ -3141,7 +3141,7 @@ for (rainbotloop = 0; rainbotloop < referalmoneyleng; rainbotloop++) {
 if (referalname == referalmoneyarray[rainbotloop].split(".")[0]){
 rainbotdone = 1;
 console.log('Old referal array thingy', referalmoneyarray[rainbotloop]);
-newrainbotpoints = rainbotwager+parseInt(referalmoneyarray[rainbotloop].split(".")[0]);
+newrainbotpoints = rainbotwager+parseInt(referalmoneyarray[rainbotloop].split(".")[1]);
 referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
 console.log('New referal array thingy', referalmoneyarray[rainbotloop]);
 }
