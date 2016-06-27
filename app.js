@@ -3093,10 +3093,10 @@ var referaltext
 function referals(username){
 console.log('entered referalshow');
 referalleng = referalarray.length;
-referaltext = "Referals: ";
+referaltext = "Referals:";
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
 if (username == referalarray[rainbotloop].split(".")[0]){
-referaltext = referaltext+referalarray[rainbotloop].split(".")[1];+" ";
+referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];;
 }
 }
 Dispatcher.sendAction('SEND_MESSAGE', referaltext)
