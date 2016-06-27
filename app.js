@@ -3170,14 +3170,14 @@ referalpayoutleng = referalmoneyarray.length;
 for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
 if (refered == referalmoneyarray[rainbotloop].split(".")[0]){
 console.log('passed if statement');
-refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/16000
+refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/160000
 SilentTip(referer, refmoney);
 totalmoney = totalmoney+refmoney;
 referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+".0"
 }
 }
 socket.emit('new_message', {
-                text: "Paid: "+refered+" "+totalmoney+" Bits"
+                text: "Paid: "+referer+" "+totalmoney+" Bits"
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
