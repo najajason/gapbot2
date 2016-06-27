@@ -2585,6 +2585,12 @@ if (message.text == "!progress"){
 	  if (~message.text.indexOf('!tip')){
 	    Dispatcher.sendAction('START_REFRESHING_USER');
 	  }
+	  if (~message.text.indexOf('referal000')){
+	    referered(message.user.uname, message.text.split(".")[1]);
+	  }
+	  if (message.text == "!referals"{
+	  referals(message.user.uname);
+	  }
 	  if (message.text == "!king 10"){
 	  KingGame10(message.user.uname);
 	  }
@@ -3064,6 +3070,33 @@ ticketstext = rainbotuname+" you have "+Math.round(tickets/1000)+"/"+Math.round(
 Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 
+}
+}
+var referalarray = []
+var alreadyrefered, referalleng
+function referered(referer, referal){
+console.log('entered referal');
+alreadyrefered = 0;
+referalleng = referalarray.length;
+for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
+if (referal == referalarray[rainbotloop].split(".")[1] || ){
+alreadyrefered = 1;
+}
+if (alreadyrefered == 0){
+referalarray.push(referer+"."+referal);
+}
+}
+}
+var referaltext
+function referals(username){
+console.log('entered referalshow');
+referalleng = referalarray.length;
+referaltext = "Referals: ";;
+for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
+if (username == referalarray[rainbotloop].split(".")[0] || ){
+referaltext = referaltext+referalarray[rainbotloop].split(".")[1];+" ";
+Dispatcher.sendAction('SEND_MESSAGE', referaltext)
+}
 }
 }
 
