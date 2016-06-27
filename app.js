@@ -2697,6 +2697,29 @@ function tipUser(username, amount){
     });
 }
 
+function SilentTip(username, amount){
+    $.ajax({
+		type: "POST",
+        contentType: "application/json",
+        url: "https://api.moneypot.com/v1/tip?access_token="+worldStore.state.accessToken,
+        data: JSON.stringify({
+            "uname": username,
+            "amount": Math.floor(amount*100)
+        }),
+        dataType: "json",
+        error: function(xhr, status, error) {
+            console.error("[TIP ERROR]", xhr.responseText);
+        }
+    }).done(function(data){
+        if(data.id){
+		    Dispatcher.sendAction('START_REFRESHING_USER')
+            user_balance = (worldStore.state.user.balance);
+            $('#balance').text((user_balance).formatMoney(2,'.',','));
+        }else{
+        }
+    });
+}
+
 function payoutking(){
 tipUser(king1, king1profit);
 tipUser(king10, king10profit);
@@ -3103,15 +3126,15 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
 var referalmoneyarray = []
-
+var referalmoneyleng, referalpayoutleng, totalmoney
 function referalmoney(referalname, rainbotwager){
 rainbotdone = 0;
-referalleng = referalmoneyarray.length;
+referalmoneyleng = referalmoneyarray.length;
 if (referalleng == 0){
 referalmoneyarray.push(referalname+"."+rainbotwager);
 } else{
-for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++) {
-if (referalname == referalmoneyarray[rainbotloop].split(".")[1]){
+for (rainbotloop = 0; rainbotloop < referalmoneyleng; rainbotloop++) {
+if (referalname == referalmoneyarray[rainbotloop].split(".")[0]){
 rainbotdone = 1;
 console.log('Old referal array thingy', referalmoneyarray[rainbotloop]);
 newrainbotpoints = rainbotwager+parseInt(referalmoneyarray[rainbotloop].split(".")[0]);
@@ -3124,7 +3147,26 @@ referalmoneyarray.push(referalname+"."+rainbotwager);
 }
 }
 }
+function payoutreferals(referer){
+rainbotdone = 0;
+totalmoney = 0;
+referalleng = referalarray.length;
+for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
+if (referer == referalarray[rainbotloop.split(".")[0]){
+payoutreferal(referalarray[rainbotloop.split(".")[1], referer);
+}
+}
+}
 
+function payoutreferal(refered, referer){
+referalpayoutleng = referalmoneyarray.length;
+for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
+if (refered == parseInt(referalmoneyarray.split(".")[0])/16000){
+SilentTip(referer, referalmoneyarray.split(".")[1]);
+totalmoney = pasreInt(referalmoneyarray.split(".")[1])/16000;
+}
+}
+}
 
 function rainbotticketsb(rainbotuname){
 if (rainbotuname == "gapjustin"){
