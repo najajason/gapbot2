@@ -3074,7 +3074,7 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 var referalarray = []
 var alreadyrefered, referalleng
-function referered(referer, referal){
+function referered(referal, referer){
 console.log('entered referal');
 alreadyrefered = 0;
 referalleng = referalarray.length;
