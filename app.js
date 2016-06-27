@@ -3102,6 +3102,30 @@ referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];;
 Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
+var referalmoneyarray = []
+
+function referalmoney(referalname, rainbotwager){
+rainbotdone = 0;
+referalleng = referalmoneyarray.length;
+if (referalleng == 0){
+referalmoneyarray.push(referalname+"."+rainbotwager);
+} else{
+for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++) {
+if (referalname == referalmoneyarray[rainbotloop].split(".")[1]){
+rainbotdone = 1;
+console.log('Old referal array thingy', referalmoneyarray[rainbotloop]);
+newrainbotpoints = rainbotwager+parseInt(referalmoneyarray[rainbotloop].split(".")[0]);
+referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
+console.log('New referal array thingy', referalmoneyarray[rainbotloop]);
+}
+}
+if (rainbotloop == referalleng && rainbotdone == 0){
+referalmoneyarray.push(referalname+"."+rainbotwager);
+}
+}
+}
+
+
 function rainbotticketsb(rainbotuname){
 if (rainbotuname == "gapjustin"){
 console.log('entered tickets');
