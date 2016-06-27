@@ -641,6 +641,7 @@ var worldStore = new Store('world', {
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
 	rainbot(bet.uname, bet.wager);
+	referalmoney(bet.uname, bet.wager);
     self.emitter.emit('change', self.state);
   });
 
