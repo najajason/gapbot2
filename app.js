@@ -2588,7 +2588,7 @@ if (message.text == "!progress"){
 	  if (~message.text.indexOf('referal000')){
 	    referered(message.user.uname, message.text.split(".")[1]);
 	  }
-	  if (message.text == "!referals"{
+	  if (message.text == "!referals"){
 	  referals(message.user.uname);
 	  }
 	  if (message.text == "!king 10"){
