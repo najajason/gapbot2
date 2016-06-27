@@ -3079,7 +3079,7 @@ console.log('entered referal');
 alreadyrefered = 0;
 referalleng = referalarray.length;
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
-if (referal == referalarray[rainbotloop].split(".")[1] || ){
+if (referal == referalarray[rainbotloop].split(".")[1]){
 alreadyrefered = 1;
 }
 if (alreadyrefered == 0){
