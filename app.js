@@ -3126,6 +3126,7 @@ if (username == referalarray[rainbotloop].split(".")[0]){
 referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];;
 }
 }
+localStorage.setItem('referralmoneyarray', referalmoneyarray);
 Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
@@ -3150,6 +3151,7 @@ if (rainbotloop == referalmoneyleng && rainbotdone == 0){
 referalmoneyarray.push(referalname+"."+rainbotwager);
 }
 }
+localStorage.setItem('referralmoneyarray', referalmoneyarray);
 }
 
 function payoutreferals(referer){
