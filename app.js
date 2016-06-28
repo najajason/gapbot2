@@ -3136,7 +3136,7 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 
 var referalmoneyarray = []
 if (localStorage.referalmoneyarray){
-referalmoneyarray = [].concat(localStorage.referalmoneyarray);
+referalmoneyarray = JSON.parse(localStorage.referalmoneyarray);
 }
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
@@ -3158,7 +3158,7 @@ if (rainbotloop == referalmoneyleng && rainbotdone == 0){
 referalmoneyarray.push(referalname+"."+rainbotwager);
 }
 }
-localStorage.setItem('referalmoneyarray', referalmoneyarray);
+localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
 }
 
 function payoutreferals(referer){
@@ -3213,7 +3213,7 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 }
-localStorage.setItem('referalmoneyarray', referalmoneyarray);
+localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
 }
 
 function rainbotticketsb(rainbotuname){
