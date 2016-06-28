@@ -3206,6 +3206,7 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 }
+localStorage.setItem('referralmoneyarray', referalmoneyarray);
 }
 
 function rainbotticketsb(rainbotuname){
