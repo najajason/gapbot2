@@ -3101,7 +3101,7 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 var referalarray = []
 if (localStorage.referalarray){
-referalarray = [].concat(localStorage.referalarray);
+referalarray = [].concat(JSON.parse(localStorage.referalarray));
 }
 var alreadyrefered, referalleng
 function referered(referal, referer){
@@ -3118,7 +3118,7 @@ if (alreadyrefered == 0){
 console.log('Put in referal array');
 referalarray.push(referer+"."+referal);
 }
-localStorage.setItem('referalarray', referalarray);
+localStorage.setItem('referalarray', JSON.stringify(referalarray));
 }
 var referaltext
 function referals(username){
