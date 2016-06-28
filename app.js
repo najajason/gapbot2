@@ -3160,17 +3160,17 @@ referalmoneyarray.push(referalname+"."+rainbotwager);
 }
 localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
 }
-
+var payoutreferalloop, payoutreferalloopa
 function payoutreferals(referer){
 console.log('Entered payoutreferals');
 rainbotdone = 0;
 totalmoney = 0;
 referalleng = referalarray.length;
-for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
-if (referer == referalarray[rainbotloop].split(".")[0]){
+for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
+if (referer == referalarray[payoutreferalloop].split(".")[0]){
 Dispatcher.sendAction('START_REFRESHING_USER');
 
-payoutreferal(referalarray[rainbotloop].split(".")[1], referer);
+payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
 }
 }
 }
@@ -3180,17 +3180,17 @@ console.log('Entered payoutreferal '+referer+refered);
 referalpayoutleng = referalmoneyarray.length;
 failed = 0;
 totalunpaid = 0;
-for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
-if (refered == referalmoneyarray[rainbotloop].split(".")[0]){
+for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
+if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
 console.log('passed if statement');
-refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/160000
+refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/160000
 if (refmoney*100 > worldStore.state.user.balance){
 failed = 1;
 totalunpaid = totalunpaid+refmoney;
 } else {
 SilentTip(referer, refmoney.toFixed(2));
 totalmoney = totalmoney+refmoney;
-referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+".0"
+referalmoneyarray[payoutreferalloopa] = referalmoneyarray[payoutreferalloopa].split(".")[0]+".0"
 }
 }
 }
