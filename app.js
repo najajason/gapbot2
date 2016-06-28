@@ -3174,17 +3174,19 @@ payoutreferal(referalarray[rainbotloop].split(".")[1], referer);
 }
 }
 }
-var failed
+var failed, totalunpaid
 function payoutreferal(refered, referer){
 console.log('Entered payoutreferal '+referer+refered);
 referalpayoutleng = referalmoneyarray.length;
 failed = 0;
+totalunpaid = 0;
 for (rainbotloop = 0; rainbotloop < referalpayoutleng; rainbotloop++) {
 if (refered == referalmoneyarray[rainbotloop].split(".")[0]){
 console.log('passed if statement');
 refmoney = parseInt(referalmoneyarray[rainbotloop].split(".")[1])/160000
 if (refmoney*100 > worldStore.state.user.balance){
 failed = 1;
+totalunpaid = totalunpaid+refmoney;
 } else {
 SilentTip(referer, refmoney.toFixed(2));
 totalmoney = totalmoney+refmoney;
@@ -3204,7 +3206,7 @@ socket.emit('new_message', {
             });
 } else {
 socket.emit('new_message', {
-                text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits. not all bits could be paid, try again later!"
+                text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits. Unpaid bits: "+totalunpaid+" try claiming again later!"
             }, function(err, msg){
                 if (err) {
                     console.log('Error when submitting new_message to server:', err);
