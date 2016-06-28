@@ -3100,8 +3100,8 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 }
 var referalarray = []
-if (localStorage.referralarray){
-referalarray = localStorage.referralarray;
+if (localStorage.referalarray){
+referalarray = localStorage.referalarray;
 }
 var alreadyrefered, referalleng
 function referered(referal, referer){
@@ -3118,7 +3118,7 @@ if (alreadyrefered == 0){
 console.log('Put in referal array');
 referalarray.push(referer+"."+referal);
 }
-localStorage.setItem('referralarray', referalarray);
+localStorage.setItem('referalarray', referalarray);
 }
 var referaltext
 function referals(username){
@@ -3130,13 +3130,13 @@ if (username == referalarray[rainbotloop].split(".")[0]){
 referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];;
 }
 }
-localStorage.setItem('referralarray', referalarray);
+localStorage.setItem('referalarray', referalarray);
 Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
 var referalmoneyarray = []
-if (localStorage.referralmoneyarray){
-referalmoneyarray = localStorage.referralmoneyarray;
+if (localStorage.referalmoneyarray){
+referalmoneyarray = localStorage.referalmoneyarray;
 }
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
@@ -3158,7 +3158,7 @@ if (rainbotloop == referalmoneyleng && rainbotdone == 0){
 referalmoneyarray.push(referalname+"."+rainbotwager);
 }
 }
-localStorage.setItem('referralmoneyarray', referalmoneyarray);
+localStorage.setItem('referalmoneyarray', referalmoneyarray);
 }
 
 function payoutreferals(referer){
