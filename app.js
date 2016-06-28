@@ -3100,9 +3100,7 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 }
 var referalarray = []
-if (localStorage.referalarray){
-referalarray = JSON.parse(localStorage.referalarray);
-}
+
 var alreadyrefered, referalleng
 function referered(referal, referer){
 console.log('entered referal');
