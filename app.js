@@ -3213,7 +3213,7 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 }
-localStorage.setItem('referralmoneyarray', referalmoneyarray);
+localStorage.setItem('referalmoneyarray', referalmoneyarray);
 }
 
 function rainbotticketsb(rainbotuname){
