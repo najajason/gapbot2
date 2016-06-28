@@ -2583,7 +2583,7 @@ function connectToChatServer() {
 if (message.text == "!users"){
 	  rainbotticketsb(message.user.uname);
 	  }
-if (message.text == "!progress"){
+if (message.text == "!giveaway"){
 	  rainbotticketsa();
 	  }
 	  if (~message.text.indexOf('!tip')){
