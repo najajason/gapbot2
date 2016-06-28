@@ -3101,7 +3101,7 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 var referalarray = []
 if (localStorage.referalarray){
-referalarray = localStorage.referalarray;
+referalarray = [].concat(localStorage.referalarray);
 }
 var alreadyrefered, referalleng
 function referered(referal, referer){
