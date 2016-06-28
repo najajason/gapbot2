@@ -3099,7 +3099,7 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 
 }
 }
-var referalarray = []
+var referalarray = localStorage.referralarray
 var alreadyrefered, referalleng
 function referered(referal, referer){
 console.log('entered referal');
@@ -3115,6 +3115,7 @@ if (alreadyrefered == 0){
 console.log('Put in referal array');
 referalarray.push(referer+"."+referal);
 }
+localStorage.setItem('referralarray', referalarray);
 }
 var referaltext
 function referals(username){
@@ -3130,7 +3131,7 @@ localStorage.setItem('referralarray', referalarray);
 Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
-var referalmoneyarray = []
+var referalmoneyarray = localStorage.referralmoneyarray
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
 rainbotdone = 0;
