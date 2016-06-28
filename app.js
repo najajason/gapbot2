@@ -3126,7 +3126,7 @@ if (username == referalarray[rainbotloop].split(".")[0]){
 referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];;
 }
 }
-localStorage.setItem('referralmoneyarray', referalmoneyarray);
+localStorage.setItem('referralarray', referalarray);
 Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
