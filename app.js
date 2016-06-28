@@ -2592,7 +2592,7 @@ if (message.text == "!progress"){
 	  if (~message.text.indexOf('referal000')){
 	    referered(message.user.uname, message.text.split(".")[1]);
 	  }
-	  if (message.text == "!referals"){
+	  if (message.text == "!referrals"){
 	  referals(message.user.uname);
 	  }
 	  if (message.text == "!king 10"){
@@ -3120,7 +3120,7 @@ var referaltext
 function referals(username){
 console.log('entered referalshow');
 referalleng = referalarray.length;
-referaltext = "Referals:";
+referaltext = "Referrals:";
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
 if (username == referalarray[rainbotloop].split(".")[0]){
 referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];;
