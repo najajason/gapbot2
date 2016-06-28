@@ -3136,7 +3136,7 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 
 var referalmoneyarray = []
 if (localStorage.referalmoneyarray){
-referalmoneyarray = localStorage.referalmoneyarray;
+referalmoneyarray = [].concat(localStorage.referalmoneyarray);
 }
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
