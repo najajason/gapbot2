@@ -3169,32 +3169,11 @@ referalleng = referalarray.length;
 for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
 if (referer == referalarray[payoutreferalloop].split(".")[0]){
 Dispatcher.sendAction('START_REFRESHING_USER');
-
 payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
 }
 }
-}
-var failed, totalunpaid
-function payoutreferal(refered, referer){
-console.log('Entered payoutreferal '+referer+refered);
-referalpayoutleng = referalmoneyarray.length;
-failed = 0;
-totalunpaid = 0;
-for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
-if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
-console.log('passed if statement');
-refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/160000
-if (refmoney*100 > worldStore.state.user.balance){
-failed = 1;
-totalunpaid = totalunpaid+refmoney;
-} else {
-SilentTip(referer, refmoney.toFixed(2));
-totalmoney = totalmoney+refmoney;
-referalmoneyarray[payoutreferalloopa] = referalmoneyarray[payoutreferalloopa].split(".")[0]+".0"
-}
-}
-}
 if (failed == 0){
+SilentTip(referer, refmoney.toFixed(2));
 socket.emit('new_message', {
                 text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits"
             }, function(err, msg){
@@ -3214,6 +3193,26 @@ socket.emit('new_message', {
                 }
                 console.log('Successfully submitted message:', msg);
             });
+}
+}
+var failed, totalunpaid
+function payoutreferal(refered, referer){
+console.log('Entered payoutreferal '+referer+refered);
+referalpayoutleng = referalmoneyarray.length;
+failed = 0;
+totalunpaid = 0;
+for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
+if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
+console.log('passed if statement');
+refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/160000
+if (refmoney*100 > worldStore.state.user.balance){
+failed = 1;
+totalunpaid = totalunpaid+refmoney;
+} else {
+totalmoney = totalmoney+refmoney;
+referalmoneyarray[payoutreferalloopa] = referalmoneyarray[payoutreferalloopa].split(".")[0]+".0"
+}
+}
 }
 localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
 }
