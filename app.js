@@ -3213,6 +3213,7 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 }
+referalmoneyarray = [];
 localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
 }
 
