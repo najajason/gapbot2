@@ -3100,7 +3100,9 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstext)
 }
 }
 var referalarray = []
+if (localStorage.referralarray){
 referalarray = localStorage.referralarray;
+}
 var alreadyrefered, referalleng
 function referered(referal, referer){
 console.log('entered referal');
@@ -3133,7 +3135,9 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
 var referalmoneyarray = []
+if (localStorage.referralmoneyarray){
 referalmoneyarray = localStorage.referralmoneyarray;
+}
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
 rainbotdone = 0;
