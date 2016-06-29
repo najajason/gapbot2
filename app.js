@@ -3173,7 +3173,7 @@ payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
 }
 }
 if (failed == 0){
-SilentTip(referer, refmoney.toFixed(2));
+SilentTip(referer, totalmoney.toFixed(2));
 socket.emit('new_message', {
                 text: "Paid: "+referer+" "+totalmoney.toFixed(2)+" Bits"
             }, function(err, msg){
