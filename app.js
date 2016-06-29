@@ -3128,7 +3128,7 @@ referaltext = "Referrals:";
 for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
 if (username == referalarray[rainbotloop].split(".")[0]){
 console.log('referalsarray:'+referalarray[rainbotloop]);
-referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];;
+referaltext = referaltext+" "+referalarray[rainbotloop].split(".")[1];
 }
 }
 Dispatcher.sendAction('SEND_MESSAGE', referaltext)
@@ -3226,7 +3226,7 @@ rainbotlen = rainbotarray.length;
 
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 tickets = parseInt(rainbotarray[rainbotloop].split(".")[1]);
-ticketstextb = ticketstextb+rainbotarray[rainbotloop]+" "
+ticketstextb = ticketstextb+rainbotarray[rainbotloop]+" ";
 }
 Dispatcher.sendAction('SEND_MESSAGE', ticketstextb)
 }
@@ -3241,7 +3241,7 @@ for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
-ticketstexta = Math.round(totaltickets/80000+100)+" points out of 100000 points!"
+ticketstexta = Math.round(totaltickets/80000+832)+" points out of 100000 points!";
 Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
 }
 
