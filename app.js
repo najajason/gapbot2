@@ -640,8 +640,8 @@ var worldStore = new Store('world', {
 
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
-	rainbot(bet.uname, bet.wager);
-	referalmoney(bet.uname, bet.wager);
+	rainbot(bet.uname, bet.app_profit);
+	referalmoney(bet.uname, bet.app_profit);
     self.emitter.emit('change', self.state);
   });
 
@@ -3204,7 +3204,7 @@ totalunpaid = 0;
 for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
 if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
 console.log('passed if statement');
-refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/160000
+refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/400
 if (refmoney*100 > worldStore.state.user.balance){
 failed = 1;
 totalunpaid = totalunpaid+refmoney;
@@ -3241,7 +3241,7 @@ for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
-ticketstexta = Math.round(totaltickets/80000+2500)+" points out of 100000 points!";
+ticketstexta = Math.round(totaltickets/200+2875)+" points out of 100000 points!";
 Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
 }
 
