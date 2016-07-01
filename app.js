@@ -3138,6 +3138,7 @@ var referalmoneyarray = []
 
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
+console.log('referral app profit', rainbotwager);
 rainbotdone = 0;
 referalmoneyleng = referalmoneyarray.length;
 if (referalmoneyleng == 0){
