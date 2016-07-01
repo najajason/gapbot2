@@ -3037,7 +3037,7 @@ var rainbotdone = 0
 var totaltickets = 0
 var totalusedtickets = 0
 function rainbot(rainbotname, to, from, value, wager){
-var rainbotwager = (to - from)*value
+var rainbotwager = (wager-(((to - from)/Math.pow(2,32))*value))/2
 rainbotdone = 0;
 rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
