@@ -3139,6 +3139,7 @@ var referalmoneyarray = []
 
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, to, from, value){
+console.log('to from valye', to, from, value);
 var referalwager = (to - from)*value
 console.log('referral app profit', referalwager);
 rainbotdone = 0;
