@@ -3040,13 +3040,13 @@ function rainbot(rainbotname, rainbotwager){
 rainbotdone = 0;
 rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
-rainbotarray.push(rainbotname+"."+rainbotwager);
+rainbotarray.push(rainbotname+"."+Math.floor(rainbotwager*1000));
 } else{
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
 if (rainbotname == rainbotarray[rainbotloop].split(".")[0]){
 rainbotdone = 1;
 console.log('Old array thingy', rainbotarray[rainbotloop]);
-newrainbotpoints = rainbotwager+parseInt(rainbotarray[rainbotloop].split(".")[1]);
+newrainbotpoints = Math.floor(rainbotwager*1000)+parseInt(rainbotarray[rainbotloop].split(".")[1]);
 rainbotarray[rainbotloop] = rainbotarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
 console.log('New array thingy', rainbotarray[rainbotloop]);
 }
@@ -3135,21 +3135,19 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
 var referalmoneyarray = []
-if (localStorage.referalmoneyarray){
-referalmoneyarray = JSON.parse(localStorage.referalmoneyarray);
-}
+
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, rainbotwager){
 rainbotdone = 0;
 referalmoneyleng = referalmoneyarray.length;
 if (referalmoneyleng == 0){
-referalmoneyarray.push(referalname+"."+rainbotwager);
+referalmoneyarray.push(referalname+"."+Math.floor(rainbotwager*1000));
 } else{
 for (rainbotloop = 0; rainbotloop < referalmoneyleng; rainbotloop++) {
 if (referalname == referalmoneyarray[rainbotloop].split(".")[0]){
 rainbotdone = 1;
 console.log('Old referal array thingy', referalmoneyarray[rainbotloop]);
-newrainbotpoints = rainbotwager+parseInt(referalmoneyarray[rainbotloop].split(".")[1]);
+newrainbotpoints = Math.floor(rainbotwager*1000)+parseInt(referalmoneyarray[rainbotloop].split(".")[1]);
 referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
 console.log('New referal array thingy', referalmoneyarray[rainbotloop]);
 }
@@ -3204,7 +3202,7 @@ totalunpaid = 0;
 for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
 if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
 console.log('passed if statement');
-refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/400
+refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/400000
 if (refmoney*100 > worldStore.state.user.balance){
 failed = 1;
 totalunpaid = totalunpaid+refmoney;
@@ -3241,7 +3239,7 @@ for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
-ticketstexta = Math.round(totaltickets/200+2875)+" points out of 100000 points!";
+ticketstexta = Math.round(totaltickets/200000+2875)+" points out of 100000 points!";
 Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
 }
 
