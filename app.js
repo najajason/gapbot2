@@ -640,8 +640,8 @@ var worldStore = new Store('world', {
 
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
-	rainbot(bet.uname, bet.app_profit);
-	referalmoney(bet.uname, bet.app_profit);
+	rainbot(bet.uname, bet.payouts);
+	referalmoney(bet.uname, bet.payouts);
     self.emitter.emit('change', self.state);
   });
 
@@ -3036,7 +3036,8 @@ var newrainbotpoints
 var rainbotdone = 0
 var totaltickets = 0
 var totalusedtickets = 0
-function rainbot(rainbotname, rainbotwager){
+function rainbot(rainbotname, payouts){
+var rainbotwager = (payouts.to - payouts.from)*payouts.value
 rainbotdone = 0;
 rainbotlen = rainbotarray.length;
 if (rainbotlen == 0){
@@ -3137,24 +3138,25 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 var referalmoneyarray = []
 
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
-function referalmoney(referalname, rainbotwager){
-console.log('referral app profit', rainbotwager);
+function referalmoney(referalname, payouts){
+var referalwager = (payouts.to - payouts.from)*payouts.value
+console.log('referral app profit', referalwager);
 rainbotdone = 0;
 referalmoneyleng = referalmoneyarray.length;
 if (referalmoneyleng == 0){
-referalmoneyarray.push(referalname+"."+Math.floor(rainbotwager*1000));
+referalmoneyarray.push(referalname+"."+Math.floor(referalwager*1000));
 } else{
 for (rainbotloop = 0; rainbotloop < referalmoneyleng; rainbotloop++) {
 if (referalname == referalmoneyarray[rainbotloop].split(".")[0]){
 rainbotdone = 1;
 console.log('Old referal array thingy', referalmoneyarray[rainbotloop]);
-newrainbotpoints = Math.floor(rainbotwager*1000)+parseInt(referalmoneyarray[rainbotloop].split(".")[1]);
+newrainbotpoints = Math.floor(referalwager*1000)+parseInt(referalmoneyarray[rainbotloop].split(".")[1]);
 referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
 console.log('New referal array thingy', referalmoneyarray[rainbotloop]);
 }
 }
 if (rainbotloop == referalmoneyleng && rainbotdone == 0){
-referalmoneyarray.push(referalname+"."+rainbotwager);
+referalmoneyarray.push(referalname+"."+referalwager);
 }
 }
 localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
