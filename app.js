@@ -640,8 +640,8 @@ var worldStore = new Store('world', {
 
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
-	rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value);
-	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value);
+	rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager);
+	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager);
     self.emitter.emit('change', self.state);
   });
 
@@ -3036,7 +3036,7 @@ var newrainbotpoints
 var rainbotdone = 0
 var totaltickets = 0
 var totalusedtickets = 0
-function rainbot(rainbotname, to, from, value){
+function rainbot(rainbotname, to, from, value, wager){
 var rainbotwager = (to - from)*value
 rainbotdone = 0;
 rainbotlen = rainbotarray.length;
@@ -3138,9 +3138,9 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 var referalmoneyarray = []
 
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
-function referalmoney(referalname, to, from, value){
+function referalmoney(referalname, to, from, value, wager){
 console.log('to from valye', to, from, value);
-var referalwager = (((to - from)/Math.pow(2,32))*value)/2
+var referalwager = (wager-(((to - from)/Math.pow(2,32))*value))/2
 console.log('referral app profit', referalwager);
 rainbotdone = 0;
 referalmoneyleng = referalmoneyarray.length;
