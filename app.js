@@ -3145,14 +3145,8 @@ if (localStorage.referalarray){
 referalarray = JSON.parse(localStorage.referalarray);
 }
 var alreadyrefered, referalleng
+
 function referered(referal, referer){
-	if (chatdone == 0){
-	chatdone = 1;
-myVar = setTimeout(function(){ refereredfunc(referal, referer); }, 2000);
-}
-}
-function refereredfunc(referal, referer){
-chatdone = 0;
 console.log('entered referal');
 alreadyrefered = 0;
 referalleng = referalarray.length;
@@ -3169,7 +3163,16 @@ referalarray.push(referer+"."+referal);
 localStorage.setItem('referalarray', JSON.stringify(referalarray));
 }
 var referaltext
+
 function referals(username){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ referalsfunc(username); }, 2000);
+}
+}
+
+function referalsfunc(username){
+chatdone = 0;
 console.log('entered referalshow');
 referalleng = referalarray.length;
 referaltext = "Referrals:";
@@ -3183,30 +3186,35 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 }
 
 var referalmoneyarray = []
+var referraltext
 if (localStorage.referalmoneyarray){
 referalmoneyarray = JSON.parse(localStorage.referalmoneyarray);
 }
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, to, from, value, wager, id){
-console.log('to from valye', to, from, value);
+console.log('to from value', to, from, value);
 var referalwager = (wager-(((to - from)/Math.pow(2,32))*value))/2
 console.log('referral app profit', referalwager);
 rainbotdone = 0;
 referalmoneyleng = referalmoneyarray.length;
 if (referalmoneyleng == 0){
-referalmoneyarray.push(referalname+"."+Math.floor(referalwager*1000));
+referalmoneyarray.push(referalname+"."+Math.floor(referalwager*1000)+"."+id);
 } else{
 for (rainbotloop = 0; rainbotloop < referalmoneyleng; rainbotloop++) {
-if (referalname == referalmoneyarray[rainbotloop].split(".")[0]){
+if (id == referalmoneyarray[rainbotloop].split(".")[2]){
+rainbotdone = 1;
+}
+if (referalname == referalmoneyarray[rainbotloop].split(".")[0] && rainbotdone == 0){
 rainbotdone = 1;
 console.log('Old referal array thingy', referalmoneyarray[rainbotloop]);
 newrainbotpoints = Math.floor(referalwager*1000)+parseInt(referalmoneyarray[rainbotloop].split(".")[1]);
-referalmoneyarray[rainbotloop] = referalmoneyarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
+referraltext = referalmoneyarray[rainbotloop].split(".")[0]+"."+newrainbotpoints+"."+id;
+referalmoneyarray[rainbotloop] = referraltext;
 console.log('New referal array thingy', referalmoneyarray[rainbotloop]);
 }
 }
 if (rainbotloop == referalmoneyleng && rainbotdone == 0){
-referalmoneyarray.push(referalname+"."+referalwager);
+referalmoneyarray.push(referalname+"."+referalwager+"."+id);
 }
 }
 localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
