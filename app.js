@@ -3245,7 +3245,7 @@ for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
-ticketstexta = Math.round(totaltickets/200000+2875)+" points out of 100000 points!";
+ticketstexta = Math.round(totaltickets/200000+6249)+" points out of 100000 points!";
 Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
 }
 
