@@ -3187,7 +3187,9 @@ Dispatcher.sendAction('SEND_MESSAGE', referaltext)
 
 var referalmoneyarray = []
 var referraltext
-
+if (localStorage.referalmoneyarray){
+referalmoneyarray = JSON.parse(localStorage.referalmoneyarray);
+}
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, to, from, value, wager, id){
 console.log('to from value', to, from, value);
