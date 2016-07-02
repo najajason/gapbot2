@@ -3079,10 +3079,10 @@ if (rainbotlen == 0){
 rainbotarray.push(rainbotname+"."+Math.floor(rainbotwager*1000));
 } else{
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
-if (id !== rainbotarray[rainbotloop].split(".")[2]){
+if (id == rainbotarray[rainbotloop].split(".")[2]){
 rainbotdone = 1;
 }
-if (rainbotname == rainbotarray[rainbotloop].split(".")[0] && id !== rainbotarray[rainbotloop].split(".")[2]){
+if (rainbotname == rainbotarray[rainbotloop].split(".")[0] && rainbotdone == 0){
 rainbotdone = 1;
 console.log('Old array thingy', rainbotarray[rainbotloop]);
 newrainbotpoints = Math.floor(rainbotwager*1000)+parseInt(rainbotarray[rainbotloop].split(".")[1]);
