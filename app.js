@@ -3219,8 +3219,17 @@ referalmoneyarray.push(referalname+"."+referalwager+"."+id);
 }
 localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
 }
-var payoutreferalloop, payoutreferalloopa
+
 function payoutreferals(referer){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ payoutreferalsfunc(referer); }, 2000);
+}
+}
+
+var payoutreferalloop, payoutreferalloopa
+function payoutreferalsfunc(referer){
+chatdone = 0;
 console.log('Entered payoutreferals');
 rainbotdone = 0;
 totalmoney = 0;
@@ -3292,6 +3301,14 @@ Dispatcher.sendAction('SEND_MESSAGE', ticketstextb)
 }
 
 function rainbotticketsa(){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ rainbotticketsafunc(); }, 2000);
+}
+}
+
+function rainbotticketsafunc(){
+chatdone = 0;
 console.log('entered tickets');
 var ticketstexta
 rainbotlen = rainbotarray.length;
@@ -3300,13 +3317,19 @@ for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++){
 totaltickets = parseInt(rainbotarray[rainbotloop].split(".")[1])+totaltickets;
 console.log('Total Tickets: ', totaltickets);
 }
-ticketstexta = Math.round(totaltickets/200000+6249)+" points out of 100000 points!";
+ticketstexta = Math.round(totaltickets/200000+6578)+" points out of 100000 points!";
 Dispatcher.sendAction('SEND_MESSAGE', ticketstexta)
 }
 
-
-
 function showponzi(){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ showponzifunc(); }, 2000);
+}
+}
+
+function showponzifunc(){
+chatdone = 0;
 socket.emit('new_message', {
                 text: ""+ponziowner+" is the current owner, buy him out for: "+ponzineed+" bits and become the new owner!"
             }, function(err, msg){
@@ -3319,6 +3342,14 @@ socket.emit('new_message', {
 }
 
 function ponzihelp(){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ ponzihelpfunc(); }, 2000);
+}
+}
+
+function ponzihelpfunc(){
+chatdone = 0;
 socket.emit('new_message', {
                 text: "Ponzi is a game where you 'buy' the ponzi spot from someone and wait till someone buys your ponzi spot for 1.90 times your buyin. Commands: !ponzi -- check who the owner is, !ponzi (amount), try to buy the ponzi spot"
             }, function(err, msg){
@@ -3330,6 +3361,14 @@ socket.emit('new_message', {
             });
 }
 function ponzirip(username){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ ponziripfunc(username); }, 2000);
+}
+}
+
+function ponziripfunc(username){
+chatdone = 0;
 if (username == "gapjustin"){
 socket.emit('new_message', {
                 text: ""+ponziowner+" Has lost their: "+ponzineed+" bits ownership!"
@@ -3347,10 +3386,14 @@ ponziowner = "gapjustin";
 function ponzigame(username, amount){
 savebalanceponzi = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
-myVar = setTimeout(function(){ ponzifunc(username, amount); }, 2000);
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ ponzifunc(username, amount); }, 3000);
+}
 }
 
 function ponzifunc(username, amount){
+chatdone = 0;
 if (worldStore.state.user.balance >= savebalanceponzi+(amount*100)){
 if (amount == ponzineed){
 ponzineed = ponzineed*2;
