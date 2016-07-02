@@ -640,8 +640,8 @@ var worldStore = new Store('world', {
 
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
-	rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.id);
-	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.id);
+	rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
+	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
     self.emitter.emit('change', self.state);
   });
 
