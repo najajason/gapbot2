@@ -3071,6 +3071,7 @@ var newrainbotpoints
 var rainbotdone = 0
 var totaltickets = 0
 var totalusedtickets = 0
+var newtext
 function rainbot(rainbotname, to, from, value, wager, id){
 var rainbotwager = (wager-(((to - from)/Math.pow(2,32))*value))/2
 rainbotdone = 0;
@@ -3086,7 +3087,8 @@ if (rainbotname == rainbotarray[rainbotloop].split(".")[0] && rainbotdone == 0){
 rainbotdone = 1;
 console.log('Old array thingy', rainbotarray[rainbotloop]);
 newrainbotpoints = Math.floor(rainbotwager*1000)+parseInt(rainbotarray[rainbotloop].split(".")[1]);
-rainbotarray[rainbotloop] = rainbotarray[rainbotloop].split(".")[0]+"."+newrainbotpoints+"."+id;
+newtext = +rainbotarray[rainbotloop].split(".")[0]+"."+newrainbotpoints"."+id;
+rainbotarray[rainbotloop] = newtext;
 console.log('New array thingy', rainbotarray[rainbotloop]);
 }
 }
