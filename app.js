@@ -640,8 +640,8 @@ var worldStore = new Store('world', {
 
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
-	rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager);
-	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager);
+	rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
+	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
     self.emitter.emit('change', self.state);
   });
 
@@ -2807,12 +2807,18 @@ function fix(amount){
             });
 			}
 
+var chatdone = 0
+
 function KingGame1(paidby){
 savebalance1 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
+	if (chatdone == 0){
+	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc1(paidby); }, 2000);
 }
+}
 function kinggamefunc1(paidby){
+chatdone = 0;
 if (worldStore.state.user.balance >= savebalance1+100){
 tipUser(king1, 0.95);
 fix(5);
@@ -2856,9 +2862,13 @@ socket.emit('new_message', {
 function KingGame10(paidby){
 savebalance10 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
+		if (chatdone == 0){
+	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc10(paidby); }, 2000);
 }
+}
 function kinggamefunc10(paidby){
+chatdone = 0;
 if (worldStore.state.user.balance >= savebalance10+1000){
 tipUser(king10, 9.5);
 king10profit = king10profit+0.25;
@@ -2901,9 +2911,13 @@ socket.emit('new_message', {
 function KingGame100(paidby){
 savebalance100 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
+	if (chatdone == 0){
+	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc100(paidby); }, 2000);
 }
+}
 function kinggamefunc100(paidby){
+chatdone = 0;
 if (worldStore.state.user.balance >= savebalance100+10000){
 tipUser(king100, 95);
 king100profit = king100profit+2.5;
@@ -2946,9 +2960,13 @@ socket.emit('new_message', {
 function KingGame1000(paidby){
 savebalance1000 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
+	if (chatdone == 0){
+	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc1000(paidby); }, 2000);
 }
+}
 function kinggamefunc1000(paidby){
+chatdone = 0;
 if (worldStore.state.user.balance >= savebalance1000+100000){
 tipUser(king1000, 950);
 king1000profit = king1000profit+25;
@@ -2989,7 +3007,16 @@ socket.emit('new_message', {
 }
 }	
 
+
 function helpkings(){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ helpkingsfunc(); }, 2000);
+}
+}
+
+function helpkingsfunc(){
+chatdone = 0;
 socket.emit('new_message', {
                 text: "Kings is a pvp game where you battle the current king for their spot as king, if you win you will be the new king and get 95% of all payments made to battle the king. Commands: !king 1,10,100,1000 -- Challenge the king, !kings -- Show the current kings"
             }, function(err, msg){
@@ -3001,8 +3028,15 @@ socket.emit('new_message', {
             });
 }
 
-
 function Showkings(){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ Showkingsfunc(); }, 2000);
+}
+}
+
+function Showkingsfunc(){
+chatdone = 0;
 socket.emit('new_message', {
                 text: "1 bit king: "+king1+" 10 bit king: "+king10+" 100 bit king: "+king100+" 1000 bit king: "+king1000
             }, function(err, msg){
@@ -3013,6 +3047,7 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 }
+
 			
 function randomnumberfunc(){
 randomnumber = Math.floor(Math.random()*100)
@@ -3036,7 +3071,7 @@ var newrainbotpoints
 var rainbotdone = 0
 var totaltickets = 0
 var totalusedtickets = 0
-function rainbot(rainbotname, to, from, value, wager){
+function rainbot(rainbotname, to, from, value, wager, id){
 var rainbotwager = (wager-(((to - from)/Math.pow(2,32))*value))/2
 rainbotdone = 0;
 rainbotlen = rainbotarray.length;
@@ -3044,16 +3079,19 @@ if (rainbotlen == 0){
 rainbotarray.push(rainbotname+"."+Math.floor(rainbotwager*1000));
 } else{
 for (rainbotloop = 0; rainbotloop < rainbotlen; rainbotloop++) {
-if (rainbotname == rainbotarray[rainbotloop].split(".")[0]){
+if (id !== rainbotarray[rainbotloop].split(".")[2]){
+rainbotdone = 1;
+}
+if (rainbotname == rainbotarray[rainbotloop].split(".")[0] && id !== rainbotarray[rainbotloop].split(".")[2]){
 rainbotdone = 1;
 console.log('Old array thingy', rainbotarray[rainbotloop]);
 newrainbotpoints = Math.floor(rainbotwager*1000)+parseInt(rainbotarray[rainbotloop].split(".")[1]);
-rainbotarray[rainbotloop] = rainbotarray[rainbotloop].split(".")[0]+"."+newrainbotpoints
+rainbotarray[rainbotloop] = rainbotarray[rainbotloop].split(".")[0]+"."+newrainbotpoints+"."+id
 console.log('New array thingy', rainbotarray[rainbotloop]);
 }
 }
-if (rainbotloop == rainbotlen && rainbotdone == 0){
-rainbotarray.push(rainbotname+"."+rainbotwager);
+if (rainbotloop == rainbotlen && rainbotdone == 0 ){
+rainbotarray.push(rainbotname+"."+rainbotwager+"."+id);
 }
 }
 }
@@ -3106,6 +3144,13 @@ referalarray = JSON.parse(localStorage.referalarray);
 }
 var alreadyrefered, referalleng
 function referered(referal, referer){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ refereredfunc(referal, referer); }, 2000);
+}
+}
+function refereredfunc(referal, referer){
+chatdone = 0;
 console.log('entered referal');
 alreadyrefered = 0;
 referalleng = referalarray.length;
@@ -3140,7 +3185,7 @@ if (localStorage.referalmoneyarray){
 referalmoneyarray = JSON.parse(localStorage.referalmoneyarray);
 }
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
-function referalmoney(referalname, to, from, value, wager){
+function referalmoney(referalname, to, from, value, wager, id){
 console.log('to from valye', to, from, value);
 var referalwager = (wager-(((to - from)/Math.pow(2,32))*value))/2
 console.log('referral app profit', referalwager);
