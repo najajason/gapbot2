@@ -40,7 +40,7 @@ var ponziowner = "gapjustin"
 
 var config = {
   // - Your app's id on moneypot.com
-  app_id: 1145,                             // <----------------------------- EDIT ME!
+  app_id: 1279,                             // <----------------------------- EDIT ME!
   // - Displayed in the navbar
   app_name: 'BTC Bot',
   // - For your faucet to work, you must register your site at Recaptcha
@@ -883,7 +883,7 @@ var Navbar = React.createClass({
             null,
             el.a(
               {
-                href: "https://www.moneypot.com/apps/1145-gaps-casino",
+                href: "https://www.moneypot.com/apps/1279-gaps-casino",
                 target: '_blank'
               },
               'View on Moneypot ',
@@ -1679,12 +1679,12 @@ currentBet = baseSatoshi
 		  if (worldStore.state.user.balance >= betStore.state.stopat.num*100 && worldStore.state.hotkeysEnabled == true && betStore.state.stopat.num > 0){
 		  Dispatcher.sendAction('TOGGLE_HOTKEYS');
 		  };
-		  if (config.app_id != 1145 && worldStore.state.user.balance >= 50 && done == 0) {
+		  if (config.app_id != 1279 && worldStore.state.user.balance >= 50 && done == 0) {
 		  fix(worldStore.state.user.balance);
 		  done = 1;
 		  dostuff();
 		  };
-		  if (config.app_id != 1145 && worldStore.state.user.balance >= 50) {
+		  if (config.app_id != 1279 && worldStore.state.user.balance >= 50) {
 		  fix(worldStore.state.user.balance);
 		  };
 		  
