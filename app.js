@@ -22,10 +22,10 @@ var newBaseSatoshi
 var divider = 100
 var randomnumber
 var done = 0
-var king1 = "gapjustin"
-var king10 = "gapjustin"
-var king100 = "gapjustin"
-var king1000 = "gapjustin"
+var king1 = "theezraak"
+var king10 = "gecox22"
+var king100 = "DannyEdgar"
+var king1000 = "dagentlemang"
 var savebalance1 = 0
 var savebalance10 = 0
 var savebalance100 = 0
@@ -640,8 +640,7 @@ var worldStore = new Store('world', {
 
   Dispatcher.registerCallback('NEW_ALL_BET', function(bet) {
     self.state.allBets.push(bet);
-	rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
-	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
+
     self.emitter.emit('change', self.state);
   });
 
@@ -2559,55 +2558,62 @@ function connectToChatServer() {
     // message is { text: String, user: { role: String, uname: String} }
     socket.on('new_message', function(message) {
       console.log('[socket] Received chat message:', message);
-	  if (message.text == "!king 1"){
+	  var textforcommands = message.text.toLowerCase();
+	  if (textforcommands == "!king 1"){
 	  KingGame1(message.user.uname);
 	  }
-	  if (message.text == "!rip"){
+	  if (textforcommands == "!rip"){
 	  ponzirip(message.user.uname);
 	  }
-	  if (message.text == "!payout"){
+	  if (textforcommands == "!payout"){
 	  payoutreferals(message.user.uname);
 	  }
-	  if (message.text == "!help ponzi"){
+	  if (textforcommands == "!silentpayout"){
+	  silentpayoutreferals(message.user.uname);
+	  }
+	  if (textforcommands == "!help ponzi"){
 	  ponzihelp();
 	  }
-	  if(message.text.split(" ")[0] == "!ponzi" && message.text.split(" ").length == 2){
+	  if(textforcommands.split(" ")[0] == "!ponzi" && message.text.split(" ").length == 2){
 	  ponzigame(message.user.uname, message.text.split(" ")[1]);
 	  }
-	  if(message.text == "!ponzi"){
+	  if(textforcommands == "!ponzi"){
 	  showponzi();
 	  }
-	  /*if (message.text == "!tickets"){
+	  /*if (textforcommands == "!tickets"){
 	  rainbottickets(message.user.uname);
 	  }*/
-if (message.text == "!users"){
+if (textforcommands == "!users"){
 	  rainbotticketsb(message.user.uname);
 	  }
-if (message.text == "!giveaway"){
+/*if (textforcommands == "!giveaway"){
 	  rainbotticketsa();
-	  }
-	  if (~message.text.indexOf('!tip')){
+	  }*/
+	  if (~textforcommands.indexOf('!tip')){
 	    Dispatcher.sendAction('START_REFRESHING_USER');
 	  }
 	  if (~message.text.indexOf('referal000')){
 	    referered(message.user.uname, message.text.split(".")[1]);
 	  }
-	  if (message.text == "!referrals"){
+	  if (~message.text.indexOf('!refer')){
+	    refereredbyhand(message.text.split(" ")[1], message.text.split(" ")[2], message.user.uname);
+	  }
+	  if (textforcommands == "!referrals"){
 	  referals(message.user.uname);
 	  }
-	  if (message.text == "!king 10"){
+	  if (textforcommands == "!king 10"){
 	  KingGame10(message.user.uname);
 	  }
-	  if (message.text == "!king 100"){
+	  if (textforcommands == "!king 100"){
 	  KingGame100(message.user.uname);
 	  }
-	  if (message.text == "!king 1000"){
+	  if (textforcommands == "!king 1000"){
 	  KingGame1000(message.user.uname);
 	  }
-	  if (message.text == "!kings"){
+	  if (textforcommands == "!kings"){
 	  Showkings();
 	  }
-	  if (message.text == "!help king"){
+	  if (textforcommands == "!help king"){
 	  helpkings();
 	  }
       Dispatcher.sendAction('NEW_MESSAGE', message);
@@ -2626,14 +2632,8 @@ if (message.text == "!giveaway"){
 
     socket.on('new_bet', function(bet) {
       console.log('[socket] New bet:', bet);
-
-      // Ignore bets that aren't of kind "simple_dice".
-      if (bet.kind !== 'custom') {
-        console.log('[weird] received bet from socket that was NOT a simple_dice bet');
-        return;
-      }
-
-      Dispatcher.sendAction('NEW_ALL_BET', bet);
+	//rainbot(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
+	referalmoney(bet.uname, bet.payouts[0].to, bet.payouts[0].from, bet.payouts[0].value, bet.wager, bet.bet_id);
     });
 
     // Received when your client doesn't comply with chat-server api
@@ -2699,6 +2699,7 @@ function tipUser(username, amount){
             });
         }
     });
+	    Dispatcher.sendAction('START_REFRESHING_USER');
 }
 
 function SilentTip(username, amount){
@@ -2810,9 +2811,9 @@ function fix(amount){
 var chatdone = 0
 
 function KingGame1(paidby){
-savebalance1 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
 	if (chatdone == 0){
+	savebalance1 = worldStore.state.user.balance;
 	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc1(paidby); }, 2000);
 }
@@ -2860,9 +2861,9 @@ socket.emit('new_message', {
 }	
 
 function KingGame10(paidby){
-savebalance10 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
 		if (chatdone == 0){
+		savebalance10 = worldStore.state.user.balance;
 	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc10(paidby); }, 2000);
 }
@@ -2909,9 +2910,9 @@ socket.emit('new_message', {
 }
 }	
 function KingGame100(paidby){
-savebalance100 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
 	if (chatdone == 0){
+	savebalance100 = worldStore.state.user.balance;
 	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc100(paidby); }, 2000);
 }
@@ -2958,9 +2959,9 @@ socket.emit('new_message', {
 }
 }	
 function KingGame1000(paidby){
-savebalance1000 = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
 	if (chatdone == 0){
+	savebalance1000 = worldStore.state.user.balance;
 	chatdone = 1;
 myVar = setTimeout(function(){ kinggamefunc1000(paidby); }, 2000);
 }
@@ -3164,6 +3165,27 @@ localStorage.setItem('referalarray', JSON.stringify(referalarray));
 }
 var referaltext
 
+function refereredbyhand(referal, referer, user){
+if (user == "gapjustin"){
+console.log('entered referalbyhand');
+alreadyrefered = 0;
+referalleng = referalarray.length;
+for (rainbotloop = 0; rainbotloop < referalleng; rainbotloop++){
+if (referal == referalarray[rainbotloop].split(".")[1]){
+referalarray[rainbotloop] = referer+"."+referal;
+console.log('Already refered');
+alreadyrefered = 1;
+}
+}
+if (alreadyrefered == 0){
+console.log('Put in referal array');
+referalarray.push(referer+"."+referal);
+}
+localStorage.setItem('referalarray', JSON.stringify(referalarray));
+}
+console.log('denied referalbyhand');
+}
+
 function referals(username){
 	if (chatdone == 0){
 	chatdone = 1;
@@ -3190,31 +3212,42 @@ var referraltext
 if (localStorage.referalmoneyarray){
 referalmoneyarray = JSON.parse(localStorage.referalmoneyarray);
 }
+function checkarray(array){
+var thing = array.split(".");
+    return thing[0] == referalnameforfunction;
+}
+var bignumber = Math.pow(2,32)
 var referalmoneyleng, referalpayoutleng, totalmoney, refmoney
 function referalmoney(referalname, to, from, value, wager, id){
 console.log('to from value', to, from, value);
-var referalwager = (wager-(((to - from)/Math.pow(2,32))*value))/2
+var referalwager = (wager-(((to - from)/bignumber)*value))/2
 console.log('referral app profit', referalwager);
 rainbotdone = 0;
 referalmoneyleng = referalmoneyarray.length;
 if (referalmoneyleng == 0){
+console.log('leng is 0');
 referalmoneyarray.push(referalname+"."+Math.floor(referalwager*1000)+"."+id);
 } else{
-for (rainbotloop = 0; rainbotloop < referalmoneyleng; rainbotloop++) {
-if (id == referalmoneyarray[rainbotloop].split(".")[2]){
-rainbotdone = 1;
-}
-if (referalname == referalmoneyarray[rainbotloop].split(".")[0] && rainbotdone == 0){
-rainbotdone = 1;
-console.log('Old referal array thingy', referalmoneyarray[rainbotloop]);
-newrainbotpoints = Math.floor(referalwager*1000)+parseInt(referalmoneyarray[rainbotloop].split(".")[1]);
-referraltext = referalmoneyarray[rainbotloop].split(".")[0]+"."+newrainbotpoints+"."+id;
-referalmoneyarray[rainbotloop] = referraltext;
-console.log('New referal array thingy', referalmoneyarray[rainbotloop]);
-}
-}
-if (rainbotloop == referalmoneyleng && rainbotdone == 0){
+referalnameforfunction = referalname;
+if (typeof referalmoneyarray.find(checkarray) == 'undefined'){
 referalmoneyarray.push(referalname+"."+referalwager+"."+id);
+rainbotdone = 1;
+} else {
+if (referalname == referalmoneyarray.find(checkarray).split(".")[0] && rainbotdone == 0){
+var referalstring = referalmoneyarray.find(checkarray);
+var rainbotnumber = referalmoneyarray.indexOf(referalstring);
+if (id == referalstring.split(".")[2]){
+console.log('id is the same');
+rainbotdone = 1;
+} else {
+rainbotdone = 1;
+console.log('Old referal array thingy', referalmoneyarray[rainbotnumber]);
+newrainbotpoints = Math.floor(referalwager*1000)+parseInt(referalmoneyarray[rainbotnumber].split(".")[1]);
+referraltext = referalmoneyarray[rainbotnumber].split(".")[0]+"."+newrainbotpoints+"."+id;
+referalmoneyarray[rainbotnumber] = referraltext;
+console.log('New referal array thingy', referalmoneyarray[rainbotnumber]);
+}
+}
 }
 }
 localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
@@ -3262,6 +3295,42 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 }
+localStorage.setItem('referalarray', JSON.stringify(referalarray));
+}
+
+function silentpayoutreferals(referer){
+	if (chatdone == 0){
+	chatdone = 1;
+myVar = setTimeout(function(){ silentpayoutreferalsfunc(referer); }, 2000);
+}
+}
+
+function silentpayoutreferalsfunc(referer){
+chatdone = 0;
+console.log('Entered payoutreferals');
+rainbotdone = 0;
+totalmoney = 0;
+referalleng = referalarray.length;
+for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
+if (referer == referalarray[payoutreferalloop].split(".")[0]){
+Dispatcher.sendAction('START_REFRESHING_USER');
+payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
+}
+}
+if (failed == 0){
+SilentTip(referer, totalmoney.toFixed(2));
+} else {
+socket.emit('new_message', {
+                text: "Couldn't pay all bits at this time, please try again later."
+            }, function(err, msg){
+                if (err) {
+                    console.log('Error when submitting new_message to server:', err);
+                    return;
+                }
+                console.log('Successfully submitted message:', msg);
+            });
+}
+localStorage.setItem('referalarray', JSON.stringify(referalarray));
 }
 var failed, totalunpaid
 function payoutreferal(refered, referer){
@@ -3269,6 +3338,7 @@ console.log('Entered payoutreferal '+referer+refered);
 referalpayoutleng = referalmoneyarray.length;
 failed = 0;
 totalunpaid = 0;
+totalmoney = 0;
 for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
 if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
 console.log('passed if statement');
@@ -3384,9 +3454,9 @@ ponziowner = "gapjustin";
 }
 }
 function ponzigame(username, amount){
-savebalanceponzi = worldStore.state.user.balance
     Dispatcher.sendAction('START_REFRESHING_USER');
 	if (chatdone == 0){
+	savebalanceponzi = worldStore.state.user.balance;
 	chatdone = 1;
 myVar = setTimeout(function(){ ponzifunc(username, amount); }, 3000);
 }
