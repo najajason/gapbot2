@@ -3266,6 +3266,8 @@ chatdone = 0;
 console.log('Entered payoutreferals');
 rainbotdone = 0;
 totalmoney = 0;
+totalunpaid = 0;
+failed = 0;
 referalleng = referalarray.length;
 for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
 if (referer == referalarray[payoutreferalloop].split(".")[0]){
@@ -3310,6 +3312,8 @@ chatdone = 0;
 console.log('Entered payoutreferals');
 rainbotdone = 0;
 totalmoney = 0;
+totalunpaid = 0;
+failed = 0;
 referalleng = referalarray.length;
 for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
 if (referer == referalarray[payoutreferalloop].split(".")[0]){
@@ -3340,7 +3344,7 @@ for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutrefer
 if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
 console.log('passed if statement');
 refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/400000
-if (totalmoney*100+refmoney*100 > worldStore.state.user.balance){
+if (parseInt(totalmoney*100)+parseInt(refmoney*100) > worldStore.state.user.balance){
 failed = 1;
 totalunpaid = totalunpaid+refmoney;
 } else {
