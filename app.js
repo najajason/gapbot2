@@ -3270,6 +3270,9 @@ referalleng = referalarray.length;
 for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
 if (referer == referalarray[payoutreferalloop].split(".")[0]){
 Dispatcher.sendAction('START_REFRESHING_USER');
+failed = 0;
+totalunpaid = 0;
+totalmoney = 0;
 payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
 }
 }
@@ -3314,6 +3317,9 @@ referalleng = referalarray.length;
 for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
 if (referer == referalarray[payoutreferalloop].split(".")[0]){
 Dispatcher.sendAction('START_REFRESHING_USER');
+failed = 0;
+totalunpaid = 0;
+totalmoney = 0;
 payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
 }
 }
@@ -3336,14 +3342,11 @@ var failed, totalunpaid
 function payoutreferal(refered, referer){
 console.log('Entered payoutreferal '+referer+refered);
 referalpayoutleng = referalmoneyarray.length;
-failed = 0;
-totalunpaid = 0;
-totalmoney = 0;
 for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
 if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
 console.log('passed if statement');
 refmoney = parseInt(referalmoneyarray[payoutreferalloopa].split(".")[1])/400000
-if (refmoney*100 > worldStore.state.user.balance){
+if (totalmoney*100+refmoney*100 > worldStore.state.user.balance){
 failed = 1;
 totalunpaid = totalunpaid+refmoney;
 } else {
