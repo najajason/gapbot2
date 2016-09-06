@@ -3270,9 +3270,6 @@ referalleng = referalarray.length;
 for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
 if (referer == referalarray[payoutreferalloop].split(".")[0]){
 Dispatcher.sendAction('START_REFRESHING_USER');
-failed = 0;
-totalunpaid = 0;
-totalmoney = 0;
 payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
 }
 }
@@ -3317,9 +3314,6 @@ referalleng = referalarray.length;
 for (payoutreferalloop = 0; payoutreferalloop < referalleng; payoutreferalloop++){
 if (referer == referalarray[payoutreferalloop].split(".")[0]){
 Dispatcher.sendAction('START_REFRESHING_USER');
-failed = 0;
-totalunpaid = 0;
-totalmoney = 0;
 payoutreferal(referalarray[payoutreferalloop].split(".")[1], referer);
 }
 }
@@ -3340,7 +3334,7 @@ localStorage.setItem('referalarray', JSON.stringify(referalarray));
 }
 var failed, totalunpaid
 function payoutreferal(refered, referer){
-console.log('Entered payoutreferal '+referer+refered);
+console.log('Entered payoutreferal '+referer+refered+totalmoney);
 referalpayoutleng = referalmoneyarray.length;
 for (payoutreferalloopa = 0; payoutreferalloopa < referalpayoutleng; payoutreferalloopa++) {
 if (refered == referalmoneyarray[payoutreferalloopa].split(".")[0]){
